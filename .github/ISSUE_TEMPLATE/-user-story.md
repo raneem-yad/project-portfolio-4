@@ -16,14 +16,12 @@ assignees: raneem-yad
 
 
 ## Description
-**As a** Role ,**I want** capability, **So that** received benefit.
+**As a** Role ,**I want** capability, **So that** benefit
 
 
 ## Acceptance Criteria
 1. 
-2. 
-3. 
+
 
 ## Tasks
-- [ ] 
 - [ ]
