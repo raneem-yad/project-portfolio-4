@@ -1,1 +1,27 @@
-<h1>footer</h1>
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="row align-items-end">
+      <!-- Big logo photo on the left -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <img src="{% static 'images/logo.png' %}" alt="Big Logo" class="img-fluid">
+      </div>
+      <!-- Website title with small description -->
+      <div class="col-lg-6 col-md-6 mb-4">
+        <h4>Zaitouna Recipes</h4>
+        <p>Explore the rich and flavorful world of Oriental cuisine with Zaitouna Recipes. Discover authentic recipes, cooking tips, and culinary traditions from the Middle East.</p>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="linked - open in a new tab"><i class="fa fa-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="linked - open in a new tab"><i class="fa fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="linked - open in a new tab"><i class="fa fa-instagram"></i></a></li>
+          <!-- Add more social media icons as needed -->
+        </ul>
+        <p>&copy; <span id="copyright"></span> Zaitouna. All rights reserved.</p>
+      </div>
+      <!-- Social media links and copyright on the right -->
+<!--      <div class="col-lg-3 col-md-12 mb-4">-->
+<!--        -->
+<!--      </div>-->
+    </div>
+  </div>
+</footer>

@@ -9,37 +9,43 @@
     --primary-background: #184B44;
 
     /* buttons, highlights, call-to-action, or  headings */
-    --accent : #FAD02E;
+    --accent: #FAD02E;
     /* hover effects, borders, or secondary buttons */
-    --deep-blue : #001F3F;
-    --rusty-orange : #C85A17;
-    --primary-text : #FFFFFF;
-    --link-hover-color: #D9B500 ;
-    --white : #fff;
+    --deep-blue: #001F3F;
+    --rusty-orange: #C85A17;
+    --primary-text: #FFFFFF;
+    --link-hover-color: #D9B500;
+    --white: #fff;
     --active: #ffeca4;
 
 
     /** Utils ***/
     --small-box-shadow: 1px 1px 7px 0 #0E3029;
-    --accent-border :1px solid #35665D;
+    --accent-border: 1px solid #35665D;
 
 }
 
-html, body {
+html,
+body {
     height: 100%
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     font-family: var(--main-font);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family:var(--title);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--title);
 }
 
-main{
+main {
     flex: 1 0 auto;
     background-color: var(--white);
 }
@@ -47,22 +53,22 @@ main{
 /* Header */
 .navbar {
     background-color: var(--primary-background);
-    box-shadow : var(--small-box-shadow);
+    box-shadow: var(--small-box-shadow);
     color: var(--white);
 }
 
 .navbar-brand {
-    color : var(--accent);
+    color: var(--accent);
     font-size: xx-large;
 }
 
 a.nav-link {
-    color : var(--accent);
+    color: var(--accent);
     font-size: 20px;
 }
 
 .navbar-nav .nav-link.active {
-    color : var(--white);
+    color: var(--white);
 }
 
 .navbar-nav .nav-link:hover {
@@ -76,5 +82,18 @@ img.logo {
 
 /* Footer */
 footer {
-    flex-shrink : 0;
+    background-color: var(--primary-background);
+    box-shadow: var(--small-box-shadow);
+    color: var(--accent);
+    flex-shrink: 0;
+    padding: 8px 0;
+}
+
+footer img {
+    width: 200px;
+    height: auto
+}
+
+i {
+    color: var(--accent);
 }
