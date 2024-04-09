@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /** Fonts **/
+    --title: Montserrat, serif;
+    --main-font: Chilanka, serif;
+
+    /** Colors **/
+    --primary-background: #184B44;
+
+    /* buttons, highlights, call-to-action, or  headings */
+    --accent : #FAD02E;
+    /* hover effects, borders, or secondary buttons */
+    --deep-blue : #001F3F;
+    --rusty-orange : #C85A17;
+    --primary-text : #FFFFFF;
+    --link-hover-color: #D9B500 ;
+    --white : #fff;
+    --active: #ffeca4;
+
+
+    /** Utils ***/
+    --small-box-shadow: 1px 1px 7px 0 #0E3029;
+    --accent-border :1px solid #35665D;
+
+}
+
+html, body {
+    height: 100%
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: var(--main-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:var(--title);
+}
+
+main{
+    flex: 1 0 auto;
+    background-color: var(--white);
+}
+
+/* Header */
+.navbar {
+    background-color: var(--primary-background);
+    box-shadow : var(--small-box-shadow);
+    color: var(--white);
+}
+
+.navbar-brand {
+    color : var(--accent);
+    font-size: xx-large;
+}
+
+a.nav-link {
+    color : var(--accent);
+    font-size: 20px;
+}
+
+.navbar-nav .nav-link.active {
+    color : var(--white);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--white);
+}
+
+img.logo {
+    width: 60px;
+    height: 60px;
+}
+
+/* Footer */
+footer {
+    flex-shrink : 0;
+}
