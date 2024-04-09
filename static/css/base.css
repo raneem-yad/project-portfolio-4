@@ -113,8 +113,16 @@ img.logo {
 }
 
 /* Form */
+.card{
+    border: var(--accent-border);
+    box-shadow: var(--small-box-shadow);
+}
+
 .form-title h1 {
+
     display: contents;
+
+
 }
 
 .form-title {
