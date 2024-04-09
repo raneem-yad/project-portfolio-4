@@ -113,6 +113,9 @@ img.logo {
 }
 
 /* Form */
+#id_password1_helptext{
+    display: none
+}
 .card{
     border: var(--accent-border);
     box-shadow: var(--small-box-shadow);
