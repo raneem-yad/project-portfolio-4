@@ -1,10 +1,47 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load allauth account %}
 {% block title %}
     {% trans "Sign In" %}
 {% endblock title %}
-{% block content %}
+
+{% block content%}
+<div class="container m-5">
+    <div class="card">
+        <div class="row g-0  justify-content-center">
+            <div class="col-md-7 p-4">
+                <div class="row justify-content-center form-title p-4">
+                    <h1>{% trans "Sign In" %}</h1>
+                </div>
+                <p>
+                    {% blocktrans %}If you have not created an account yet, then please
+                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+                </p>
+                {% url 'account_login' as login_url %}
+                <form class="form p-2" method="post" action="{{ login_url }}">
+                    {% csrf_token %}
+                    {{ form| crispy }}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">{% trans 'Sign In' %}</button>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="col-md-5 form-side d-flex flex-column justify-content-center p-5">
+                <h4 class="mb-4">You will Enjoy!</h4>
+                <p class="small mb-0">Welcome to Zaitouna Recipes! Dive into a world of culinary delights and discover authentic recipes from the heart of Oriental cuisine. Join our community of food enthusiasts, save your favorite recipes, and share your cooking adventures with friends. Login now to explore the flavors of the Middle East.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+
+
+{% comment %} {% block content %}
     {% element h1 %}
         {% trans "Sign In" %}
     {% endelement %}
@@ -33,4 +70,4 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
-{% endblock content %}
+{% endblock content %} {% endcomment %}
