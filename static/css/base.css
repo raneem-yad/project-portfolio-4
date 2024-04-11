@@ -170,6 +170,12 @@ img.logo {
     border-color: var(--primary-white);
 }
 
+
+/** Recipes */
+.recipe-card{
+    max-width : 18rem
+}
+
 /* Footer */
 footer {
     background-color: var(--primary-background);

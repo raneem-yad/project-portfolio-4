@@ -1,4 +1,4 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView , ListView
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe
@@ -6,6 +6,14 @@ from .forms import RecipeForm
 
 
 # Create your views here.
+class Recipes(ListView):
+    """
+    List recipe View
+    """
+    template_name = 'recipes/recipes.html'
+    model = Recipe
+    context_object_name = 'recipes'
+
 class AddRecipe(LoginRequiredMixin, CreateView):
     """
     Add recipe View
