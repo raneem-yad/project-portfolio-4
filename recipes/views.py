@@ -1,4 +1,5 @@
-from django.views.generic import CreateView , ListView
+from django.shortcuts import render
+from django.views.generic import CreateView, ListView
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe
@@ -6,6 +7,12 @@ from .forms import RecipeForm
 
 
 # Create your views here.
+def home_recipe_view(request):
+    weekly_recipe = Recipe.objects.filter(is_weekly=True).last()
+    recipe_list = Recipe.objects.all()
+    return render(request, 'home/index.html', {'weekly_recipe': weekly_recipe, 'recipe_list': recipe_list})
+
+
 class Recipes(ListView):
     """
     List recipe View
@@ -13,6 +20,7 @@ class Recipes(ListView):
     template_name = 'recipes/recipes.html'
     model = Recipe
     context_object_name = 'recipes'
+
 
 class AddRecipe(LoginRequiredMixin, CreateView):
     """

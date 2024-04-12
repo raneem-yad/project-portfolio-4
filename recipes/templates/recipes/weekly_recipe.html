@@ -1,0 +1,23 @@
+
+  {% if weekly_recipe %}
+    <div class="card m-3">
+      <div class="row g-0 justify-content-center align-items-center">
+        <div class="col-md-5">
+          <img src="{{weekly_recipe.image.url}}" class="img-fluid rounded-start" alt="{{weekly_recipe.image_alt}}">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body m-5">
+            <h5 class="card-text"><small class="text-muted">Weekly Recipe</small></h5>
+            <h2 class="card-title">{{weekly_recipe.name}}</h2>
+            <p class="card-text">{{weekly_recipe.description}}</p>
+            <p class="card-text"><small class="text-muted">
+              <a href="show the details" class="btn btn-accent" aria-label="Click to view {{weekly_recipe.name}}">
+                Discover more <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </a>
+            </small></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}

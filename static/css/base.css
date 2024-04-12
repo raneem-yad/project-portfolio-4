@@ -61,7 +61,9 @@ main {
 .btn-primary {
     background-color: var(--primary-white);
     border-color: var(--primary-white);
-    color: #ffffff; /* Text color */
+    color: #ffffff;
+    font-family: var(--title);
+    text-transform: uppercase;
 }
 
 .btn-primary:hover,
@@ -75,8 +77,30 @@ main {
 .btn-primary:active {
     background-color: var(--primary-white);
     border-color: var(--primary-white);
-    color: #ffffff; /* Text color */
+    color: #ffffff;
 }
+
+.btn-accent {
+    background-color: var(--primary-background);
+    border-color: var(--primary-white);
+    color: #ffffff;
+    font-family: var(--title);
+    text-transform: uppercase;
+}
+.btn-accent:hover,
+.btn-accent:focus {
+    background-color: #3e716a;
+    border-color: #3e716a;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn-accent:active {
+    background-color: var(--primary-background);
+    border-color: var(--primary-white);
+    color: #ffffff;
+}
+
 
 /* Header */
 .navbar {
@@ -173,7 +197,7 @@ img.logo {
 
 /** Recipes */
 .recipe-card{
-    max-width : 18rem
+    max-width : 20rem
 }
 
 /* Footer */
