@@ -10,7 +10,7 @@
     </div>
     <div class=" d-flex flex-row flex-wrap justify-content-center">
     {% for recipe in recipes %}
-    <a href="" class="recipes" aria-label="Click to view {{recipe.title}}"></a>
+    <a href="{% url 'recipe_detail' recipe.slug %}" class="recipes" aria-label="Click to view {{recipe.title}}"></a>
 
         <div class="card w-75 m-3">
           <div class="row g-0 justify-content-center align-items-center">
@@ -34,7 +34,7 @@
                 <p class="card-text py-3">{{recipe.description}}</p>
                 <p class="card-text">
                     <small class="text-muted">
-                      <a href="show the details" class="btn btn-accent" aria-label="Click to view {{weekly_recipe.name}}">
+                      <a href="{% url 'recipe_detail' recipe.slug %}" class="btn btn-accent" aria-label="Click to view {{weekly_recipe.name}}">
                         Discover more <i class="fa-solid fa-arrow-right-from-bracket"></i>
                       </a></small>
                 </p>

@@ -17,7 +17,7 @@
                         {% else %}
                             <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
                         {% endif %}
-                        {{ recipe.user.username }} | <i class="fa-solid fa-clock"></i> {{recipe.posted_date}}
+                        {{ recipe.user.username }} | <i class="far fa-calendar-alt"></i> {{recipe.posted_date}}
                     </p>
                     <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
                     <span class="badge rounded-pill bg-success">cook time :{{recipe.cooking_time}}</span>
@@ -25,7 +25,7 @@
                     <p class="card-text py-3">{{recipe.description}}</p>
                 </div>
                 <div class="card-footer bg-transparent border-success">
-                    <a href="#"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary ">more</a>
+                    <a href="{% url 'recipe_detail' recipe.slug %}"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary ">more</a>
                 </div>
             </div>
         </div>

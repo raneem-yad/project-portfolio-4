@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{%block title %}Recipe Detail - {{recipe.name}}{% endblock%}
+{% load static %}
+{%block content %}
+<div class="container">
+  <!-- Title Section -->
+  <div class="row mt-5">
+    <div class="col-12 col-sm-9">
+      <h1>{{recipe.name}}</h1>
+    </div>
+
+
+    <div class="col-12 col-sm-3 text-end tools">
+    {% if request.user == recipe.user %}
+      <a href="" class="edit-icon me-3"><i class="fa-regular fa-pen-to-square"></i></a>
+      <a href="" class="delete-icon me-3"><i class="fa-regular fa-trash-can"></i></a>
+    {% endif %}
+      <a href="" class="share-icon me-3"><i class="fa-regular fa-share-from-square"></i></a>
+      <a href="" class="bookmark-icon me-3"><i class="far fa-bookmark"></i></a>
+    </div>
+  </div>
+
+  <!-- Info Section -->
+  <div class="d-flex flex-wrap recipe-info">
+      <div class="my-2 mx-4">
+        {% if recipe.user.profile.photo %}
+            <img src="{{ recipe.user.profile.photo.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+        {% else %}
+            <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
+        {% endif %}
+        <small class="pl-1">{{recipe.user}}</small>
+      </div>
+      <div class="my-2 mx-4 tools">
+        <i class="far fa-calendar-alt"></i>
+        <small>{{recipe.posted_date}}</small>
+      </div>
+      <div class="my-2 mx-4 tools">
+        <i class="fa-regular fa-comment"></i>
+        <small>25</small>
+      </div>
+<!--    rating -->
+<!--      <div class="my-2">-->
+<!--        <div class="w-100 float-left">-->
+<!--          <div class="float-left">-->
+<!--            <div class="fabrx-ratings has-rating rating">-->
+<!--              <input type="radio" id="radio1" name="rate1" value="1" checked="checked">-->
+<!--              <label for="radio1" class="custom-starboxes"> <i class="fa-solid fa-star"></i></label>-->
+<!--              <input type="radio" id="radio2" name="rate1" value="2">-->
+<!--              <label for="radio2" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
+<!--              <input type="radio" id="radio3" name="rate1" value="3">-->
+<!--              <label for="radio3" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
+<!--              <input type="radio" id="radio4" name="rate1" value="4">-->
+<!--              <label for="radio4" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
+<!--              <input type="radio" id="radio5" name="rate1" value="5">-->
+<!--              <label for="radio5" class="custom-starboxes"><i class="fa-regular fa-star"></i></label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+  </div>
+  <!-- Description Section -->
+  <div class="row mt-3 recipe-desc">
+    <div class="col">
+      <p>{{recipe.description}}</p>
+    </div>
+  </div>
+
+  <!-- Recipe Photo -->
+  <div class="row mt-3">
+    <div class="col">
+      <img src="{{recipe.image.url}}" class="img-fluid recipe-img" alt="{{recipe.image_alt}}">
+    </div>
+  </div>
+
+  <!-- Recipe Instructions and Details -->
+  <div class="row mt-3">
+    <!-- Instructions -->
+    <div class="col-md-9">
+      <h2>Ingredients</h2>
+      {{recipe.ingredients | safe }}
+      <!-- More Steps -->
+    </div>
+    <!-- Recipe Details -->
+    <div class="col-md-3">
+      <h2>Details</h2>
+      <ul class="list-unstyled ">
+        <li class="tools">
+          <small><i class="fa-solid fa-wine-glass-empty"></i> Meal Type</small>
+          <span><strong>{{recipe.meal_type}} </strong></span>
+        </li>
+        <li class="tools">
+          <small><i class="far fa-clock"></i> Prep Time</small>
+          <span><strong>{{recipe.preparation_time}} min</strong></span>
+        </li>
+        <li class="tools">
+          <small><i class="far fa-clock"></i> Cook Time</small>
+          <span><strong>{{recipe.cooking_time}} min</strong></span>
+        </li>
+        <li class="tools">
+          <small><i class="fa-solid fa-scale-unbalanced-flip"></i> Difficulty</small>
+          <span><strong>{{recipe.difficulty}}</strong> </span>
+        </li>
+        <li class="tools">
+          <small><i class="fa-solid fa-bell-concierge"></i> Serves</small>
+          <span><strong>{{recipe.serves}} People</strong></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <h2>Instructions</h2>
+      {{recipe.instructions | safe }}
+  </div>
+</div>
+
+{% endblock %}

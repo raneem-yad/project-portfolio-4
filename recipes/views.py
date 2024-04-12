@@ -47,9 +47,18 @@ class AddRecipe(LoginRequiredMixin, CreateView):
 
 class RecipeDetail(DetailView):
     """
-    List recipe View
+    Display an individual :model:`Recipe`.
+
+    **Context**
+
+    ``Recipe``
+        An instance of :model:`Recipe`.
+
+    **Template:**
+
+    :template:`blog/Recipe_detail.html`
     """
 
     template_name = "recipes/recipe_details.html"
     model = Recipe
-    context_object_name = "recipes"
+    context_object_name = "recipe"

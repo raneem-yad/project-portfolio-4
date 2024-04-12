@@ -44,6 +44,7 @@ h4,
 h5,
 h6 {
     font-family: var(--title);
+    color: var(--primary-background);
 }
 
 a {
@@ -203,6 +204,23 @@ img.logo {
     width: 25px;
     border : 1px solid var(--primary-background);
 }
+
+.recipe-img {
+    width: -webkit-fill-available;
+}
+
+.recipe-info {
+     border-bottom : 1px solid #184b4424;
+}
+
+
+
+/**Tools **/
+.tools i {
+    /* color: black; */
+    color: var(--primary-background);
+}
+
 
 /* Footer */
 footer {
