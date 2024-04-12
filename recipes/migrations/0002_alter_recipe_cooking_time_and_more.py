@@ -11,9 +11,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name="recipe", name="cooking_time", field=models.DurationField(),
+            model_name="recipe",
+            name="cooking_time",
+            field=models.DurationField(),
         ),
         migrations.AlterField(
-            model_name="recipe", name="preparation_time", field=models.DurationField(),
+            model_name="recipe",
+            name="preparation_time",
+            field=models.DurationField(),
         ),
     ]

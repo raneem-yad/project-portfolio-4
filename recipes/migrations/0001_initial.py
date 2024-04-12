@@ -99,7 +99,9 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"ordering": ["-posted_date"],},
+            options={
+                "ordering": ["-posted_date"],
+            },
         ),
         migrations.CreateModel(
             name="Comment",
@@ -134,6 +136,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"ordering": ["-created_on"],},
+            options={
+                "ordering": ["-created_on"],
+            },
         ),
     ]

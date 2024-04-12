@@ -21,6 +21,8 @@ class Migration(migrations.Migration):
             field=models.PositiveIntegerField(),
         ),
         migrations.AlterField(
-            model_name="recipe", name="serves", field=models.PositiveIntegerField(),
+            model_name="recipe",
+            name="serves",
+            field=models.PositiveIntegerField(),
         ),
     ]
