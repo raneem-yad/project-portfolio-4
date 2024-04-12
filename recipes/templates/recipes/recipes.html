@@ -1,6 +1,9 @@
+
 {% extends 'base.html' %}
 {%block title %}Recipes{% endblock%}
+{% load static %}
 {%block content %}
+
 <div class="container">
     <div class="form-title text-center p-4 justify-content-center">
             <h1>Latest Recipes</h1>
@@ -9,12 +12,35 @@
     {% for recipe in recipes %}
     <a href="" class="recipes" aria-label="Click to view {{recipe.title}}"></a>
 
-        <div class="card recipe-card m-4">
-          <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
-          <div class="card-body">
-            <h3 class="card-title">{{recipe.name}}</h3>
-            <p class="card-text">{{recipe.description}}</p>
-            <a href="#"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary">more</a>
+        <div class="card w-75 m-3">
+          <div class="row g-0 justify-content-center align-items-center">
+            <div class="col-md-5">
+              <img src="{{recipe.image.url}}" class="img-fluid rounded-start" alt="{{recipe.image_alt}}">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h2 class="card-title">{{recipe.name}}</h2>
+                    <p>
+                        {% if recipe.user.profile.photo %}
+                            <img src="{{ recipe.user.profile.photo.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+                        {% else %}
+                            <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
+                        {% endif %}
+                        {{ recipe.user.username }} | <i class="fa-solid fa-clock"></i> {{recipe.posted_date}}
+                    </p>
+                    <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
+                    <span class="badge rounded-pill bg-success">cook time :{{recipe.cooking_time}}</span>
+                    <span class="badge rounded-pill bg-success">serves :{{recipe.serves}}</span>
+                <p class="card-text py-3">{{recipe.description}}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                      <a href="show the details" class="btn btn-accent" aria-label="Click to view {{weekly_recipe.name}}">
+                        Discover more <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                      </a></small>
+                </p>
+
+              </div>
+            </div>
           </div>
         </div>
 

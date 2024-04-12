@@ -199,6 +199,10 @@ img.logo {
 .recipe-card{
     max-width : 20rem
 }
+.avatar {
+    width: 25px;
+    border : 1px solid var(--primary-background);
+}
 
 /* Footer */
 footer {
