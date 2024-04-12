@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%block title %}Delete Recipe - {{ object.name }} {% endblock%}
+
+{%block content %}
+
+    <div class="container d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="col col-sm-6 mx-auto my-auto">
+            <div class="card justify-content-center p-5">
+                <div class="row form-title justify-content-center">
+                    <h1>Recipe Deletion</h1>
+                </div>
+                <p class="text-center pt-4  ">Are you sure you want to delete "{{object.name}}" ?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{%endblock  %}
