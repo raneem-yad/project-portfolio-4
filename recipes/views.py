@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
+from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView
 from django.utils.text import slugify
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
@@ -66,9 +66,19 @@ class RecipeDetail(DetailView):
     context_object_name = "recipe"
 
 
-class DeleteRecipe(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
+class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Recipe
-    success_url = '/recipes/list/'
+    success_url = '/recipes/'
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
+
+
+class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    template_name = "recipes/edit_recipe.html"
+    model = Recipe
+    form_class = RecipeForm
+    success_url = '/recipes/'
 
     def test_func(self):
         return self.request.user == self.get_object().user

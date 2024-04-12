@@ -12,7 +12,7 @@
 
     <div class="col-12 col-sm-3 text-end tools">
     {% if request.user == recipe.user %}
-      <a href="" class="edit-icon me-3"><i class="fa-regular fa-pen-to-square"></i></a>
+      <a href="{% url 'edit_recipe' recipe.slug %}" class="edit-icon me-3"><i class="fa-regular fa-pen-to-square"></i></a>
       <a href="{% url 'delete_recipe' recipe.slug %}" class="delete-icon me-3"><i class="fa-regular fa-trash-can"></i></a>
     {% endif %}
       <a href="" class="share-icon me-3"><i class="fa-regular fa-share-from-square"></i></a>
