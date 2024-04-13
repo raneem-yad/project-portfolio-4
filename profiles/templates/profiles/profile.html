@@ -28,10 +28,24 @@
             <div class="profile-recipes">
                 <h2 class="text-center pb-4">Added Recipes</h2>
                 {% for recipe in profile.user.recipe_owner.all %}
-                <a href="{%url 'recipe_detail' recipe.id%}"><h3>{{recipe.name}}</h3></a>
+                <a href="{%url 'recipe_detail' recipe.slug %}"><h3>{{recipe.name}}</h3></a>
                 {{recipe.posted_date}}
                 <hr>
                 {% endfor %}
+            </div>
+
+            <div class="profile-bookmarks">
+                <h2 class="text-center pb-4">Bookmarked Recipes</h2>
+                    {% if bookmarked_recipes %}
+                    <ul>
+                           {% for recipe_name, recipe_slug in bookmarked_recipes %}
+                                <li><a href="{% url 'recipe_detail' recipe_slug %}">{{ recipe_name }}</a></li>
+                            {% endfor %}
+                            <hr>
+                    </ul>
+                     {% else %}
+                    <p>No bookmarked recipes.</p>
+                    {% endif %}
             </div>
         </div>
     </div>

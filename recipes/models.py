@@ -77,5 +77,5 @@ class Comment(models.Model):
 
 
 class Bookmark(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipes = models.ManyToManyField(Recipe)
+    user = models.ForeignKey(User, related_name='bookmarks', on_delete=models.CASCADE)
+    recipes = models.ManyToManyField('recipes.Recipe')  # Assuming your Recipe model is in an app named 'recipes'
