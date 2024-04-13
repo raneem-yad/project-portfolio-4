@@ -1,6 +1,6 @@
 from django import forms
 from djrichtextfield.widgets import RichTextWidget
-from .models import Recipe
+from .models import Recipe, Comment
 
 
 class RecipeForm(forms.ModelForm):
@@ -37,4 +37,18 @@ class RecipeForm(forms.ModelForm):
             "preparation_time": "Preparation Time in minutes",
             "cooking_time": "Cooking time in minutes",
             "serves": "Serves",
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            "title",
+            "body",
+        ]
+        widget = {"body": forms.Textarea(attrs={"row": 5})}
+        labels = {
+            "title": "Comment Title",
+            "body": "Tell us how you found the Recipe",
         }

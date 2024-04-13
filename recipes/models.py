@@ -62,8 +62,8 @@ class Recipe(models.Model):
 
 
 class Comment(models.Model):
-    title = models.CharField(max_length=200, default="test")
-    post = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="comments")
+    title = models.CharField(max_length=200, default="Wonderful Recipe")
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     body = models.TextField()
     approved = models.BooleanField(default=False)

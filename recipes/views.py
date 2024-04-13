@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     CreateView,
     ListView,
@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import Recipe, MealType, Bookmark
-from .forms import RecipeForm
+from .forms import RecipeForm, CommentForm
 
 
 # Create your views here.
@@ -105,6 +105,33 @@ class RecipeDetail(DetailView):
             context['is_bookmarked'] = user_bookmarks.filter(recipes=self.object).exists()
         else:
             context['is_bookmarked'] = False
+
+        # Comments functionality
+        recipe = self.object
+        comments = recipe.comments.filter(approved=True).order_by("-created_on")
+        comment_count = comments.count()
+        if self.request.method == "POST":
+            comment_form = CommentForm(data=self.request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = self.request.user
+                comment.recipe = recipe
+                comment.save()
+                # Add success message
+                messages.success(
+                    self.request,
+                    'Comment submitted and awaiting approval'
+                )
+                # Redirect to the same page after comment submission
+                return redirect('recipe_detail', slug=recipe.slug)
+        else:
+            comment_form = CommentForm()
+
+        # Add comments-related context
+        context['comments'] = comments
+        context['comment_count'] = comment_count
+        context['comment_form'] = comment_form
+
         return context
 
 
