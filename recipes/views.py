@@ -96,6 +96,17 @@ class RecipeDetail(DetailView):
     model = Recipe
     context_object_name = "recipe"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            # Get the current user's bookmarks
+            user_bookmarks = Bookmark.objects.filter(user=self.request.user)
+            # Check if the current recipe is bookmarked by the user
+            context['is_bookmarked'] = user_bookmarks.filter(recipes=self.object).exists()
+        else:
+            context['is_bookmarked'] = False
+        return context
+
 
 class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Recipe
@@ -125,5 +136,19 @@ def bookmark_recipe(request, slug):
             # If not bookmarked, add it to the user's bookmarks
             bookmark, created = Bookmark.objects.get_or_create(user=user)
             bookmark.recipes.add(recipe)
+    # Redirect back to the recipe detail page
+    return redirect('recipe_detail', slug=slug)
+
+
+@login_required
+def remove_bookmark(request, slug):
+    if request.method == 'GET':
+        user = request.user
+        recipe = Recipe.objects.get(slug=slug)
+        # Check if the recipe is bookmarked
+        bookmark = Bookmark.objects.filter(user=user, recipes=recipe).first()
+        if bookmark:
+            # If bookmark exists, remove the recipe from the user's bookmarks
+            bookmark.recipes.remove(recipe)
     # Redirect back to the recipe detail page
     return redirect('recipe_detail', slug=slug)

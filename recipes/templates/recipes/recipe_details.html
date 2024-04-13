@@ -17,7 +17,11 @@
       <a href="{% url 'delete_recipe' recipe.slug %}" class="delete-icon me-3"><i class="fa-regular fa-trash-can"></i></a>
     {% endif %}
       <a href="#" class="share-icon me-3" data-bs-toggle="modal" data-bs-target="#social-media-share"><i class="fa-regular fa-share-from-square"></i></a>
+      {% if is_bookmarked %}
+      <a href="{% url 'remove_bookmark' recipe.slug %}" class="bookmark-icon me-3"><i class="fas fa-bookmark"></i></a>
+      {% else %}
       <a href="{% url 'bookmark_recipe' recipe.slug %}" class="bookmark-icon me-3"><i class="far fa-bookmark"></i></a>
+      {% endif %}
     </div>
   </div>
 
