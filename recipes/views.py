@@ -10,6 +10,8 @@ from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.views.generic.edit import FormMixin
+from django.contrib import messages
 from .models import Recipe, MealType, Bookmark
 from .forms import RecipeForm, CommentForm
 
@@ -78,7 +80,7 @@ class AddRecipe(LoginRequiredMixin, CreateView):
         return super(AddRecipe, self).form_valid(form)
 
 
-class RecipeDetail(DetailView):
+class RecipeDetail(FormMixin, DetailView):
     """
     Display an individual :model:`Recipe`.
 
@@ -95,9 +97,11 @@ class RecipeDetail(DetailView):
     template_name = "recipes/recipe_details.html"
     model = Recipe
     context_object_name = "recipe"
+    form_class = CommentForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        recipe = self.object
         if self.request.user.is_authenticated:
             # Get the current user's bookmarks
             user_bookmarks = Bookmark.objects.filter(user=self.request.user)
@@ -105,34 +109,29 @@ class RecipeDetail(DetailView):
             context['is_bookmarked'] = user_bookmarks.filter(recipes=self.object).exists()
         else:
             context['is_bookmarked'] = False
-
-        # Comments functionality
-        recipe = self.object
-        comments = recipe.comments.filter(approved=True).order_by("-created_on")
-        comment_count = comments.count()
-        if self.request.method == "POST":
-            comment_form = CommentForm(data=self.request.POST)
-            if comment_form.is_valid():
-                comment = comment_form.save(commit=False)
-                comment.author = self.request.user
-                comment.recipe = recipe
-                comment.save()
-                # Add success message
-                messages.success(
-                    self.request,
-                    'Comment submitted and awaiting approval'
-                )
-                # Redirect to the same page after comment submission
-                return redirect('recipe_detail', slug=recipe.slug)
-        else:
-            comment_form = CommentForm()
-
-        # Add comments-related context
-        context['comments'] = comments
-        context['comment_count'] = comment_count
-        context['comment_form'] = comment_form
-
+        context['comments'] = recipe.comments.filter(approved=True).order_by("-created_on")
+        context['comment_count'] = context['comments'].count()
+        context['comment_form'] = CommentForm
         return context
+
+    def post(self, request,*args, **kwargs):
+        recipe = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.recipe = recipe
+            comment.save()
+            # Add success message
+            messages.success(
+                self.request,
+                'Comment submitted and awaiting approval'
+            )
+            # return HttpResponseRedirect(request.path_info)  # Redirect to the same page
+            return redirect('recipe_detail', slug=recipe.slug)
+        else:
+            return self.form_invalid(form)
+
 
 
 class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -163,6 +162,10 @@ def bookmark_recipe(request, slug):
             # If not bookmarked, add it to the user's bookmarks
             bookmark, created = Bookmark.objects.get_or_create(user=user)
             bookmark.recipes.add(recipe)
+            messages.success(
+                request,
+                'Recipe was booked Successfully!'
+            )
     # Redirect back to the recipe detail page
     return redirect('recipe_detail', slug=slug)
 
@@ -177,5 +180,9 @@ def remove_bookmark(request, slug):
         if bookmark:
             # If bookmark exists, remove the recipe from the user's bookmarks
             bookmark.recipes.remove(recipe)
+            messages.success(
+                request,
+                'Recipe was removed from bookmarked list Successfully!'
+            )
     # Redirect back to the recipe detail page
     return redirect('recipe_detail', slug=slug)

@@ -217,6 +217,15 @@ img.logo {
 .profile-img {
 }
 
+/** Alerts - Messages **/
+.alert{
+    background-color: #194b4485;
+    color: #fff;
+}
+
+.alert-dismissible .btn-close {
+    color: #fff;
+}
 /**Tools **/
 .tools i {
     /* color: black; */
