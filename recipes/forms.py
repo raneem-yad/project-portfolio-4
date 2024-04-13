@@ -34,7 +34,7 @@ class RecipeForm(forms.ModelForm):
             "image_alt": "Description of your Image",
             "meal_type": "Pick which meal type your recipe is!",
             "difficulty": "Difficulty",
-            "preparation_time": "Preparation Time",
-            "cooking_time": "Cooking time",
+            "preparation_time": "Preparation Time in minutes",
+            "cooking_time": "Cooking time in minutes",
             "serves": "Serves",
         }

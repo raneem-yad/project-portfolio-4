@@ -12,8 +12,9 @@
                 <div class="card-body">
                     <h3 class="card-title">{{recipe.name}}</h3>
                     <p>
-                        {% if recipe.user.profile.photo %}
-                            <img src="{{ recipe.user.profile.photo.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+                        {{ recipe.user.profile.image.url }}
+                        {% if recipe.user.profile_owner.image is not none %}
+                            <img src="{{ recipe.user.profiles_owner.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
                         {% else %}
                             <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
                         {% endif %}

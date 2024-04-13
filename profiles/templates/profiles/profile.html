@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%block title %} Profiles {% endblock%}
+{% load static %}
+{%block content %}
+    <div class="container">
+        <div class="profile">
+            <div class="info">
+                <div class="profile-img text-center">
+                    {% if profile.image.url is not none %}
+                    <img src="{{profile.image.url}}" alt="{{profile.user.username}}'s image ">
+                    {% else%}
+                    <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
+                    {% endif %}
+                </div>
+                <h1>{{profile.user.username}}</h1>
+                <p><strong>Joined :</strong>{{ profile.user.date_joined|date:'d M Y'}}</p>
+                <p><strong>Recipes :</strong>{{ profile.user.recipe_owner.count}}</p>
+                {% if profile.image.url is not none %}
+                {{profile.bio | safe}}
+                {% endif %}
+            </div>
+            <div class="profile-recipes">
+                <h2 class="text-center pb-4">Added Recipes</h2>
+                {% for recipe in profile.user.recipe_owner.all %}
+                <a href="{%url 'recipe_detail' recipe.id%}"><h3>{{recipe.name}}</h3></a>
+                {{recipe.posted_date}}
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{%endblock%}

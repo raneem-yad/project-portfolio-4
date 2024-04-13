@@ -20,7 +20,8 @@
 #     def test_form_valid(self):
 #         meal_type_id = MealType.objects.get(title='Breakfast').id
 #         # Create a dummy image file
-#         image_content = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90\x8d6\x00\x00\x00\x0bIDAT\x08\xd7c\x00\x01\x00\x00\x05\x00\x01\r\n\x00\x00\x00\x00IEND\xaeB`\x82'
+#         image_content = bytearray([1,2,3])
+#         # image_content = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90\x8d6\x00\x00\x00\x0bIDAT\x08\xd7c\x00\x01\x00\x00\x05\x00\x01\r\n\x00\x00\x00\x00IEND\xaeB`\x82'
 #         image = SimpleUploadedFile("test_image.png", image_content, content_type="image/png")
 #
 #         form_data = {
@@ -37,6 +38,8 @@
 #         }
 #         response = self.client.post(self.url, form_data)
 #         # self.assertEqual(response.status_code, 302)  # Check if the form submission redirects
+#         print(response.status_code)
+#         print(response.body)
 #         self.assertEqual(response.status_code, 200)
 #         self.assertTrue(Recipe.objects.filter(user=self.user, slug=slugify('Test Recipe')).exists())
 #

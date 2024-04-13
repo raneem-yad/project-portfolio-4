@@ -10,8 +10,10 @@ class RecipeFormTestCase(TestCase):
         self.meal_type = MealType.objects.create(title="Breakfast")
 
     def test_valid_form(self):
+        # Todo : dummy image is the problem
         # Create a dummy image file
-        image_content = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90\x8d6\x00\x00\x00\x0bIDAT\x08\xd7c\x00\x01\x00\x00\x05\x00\x01\r\n\x00\x00\x00\x00IEND\xaeB`\x82"
+        # image_content = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90\x8d6\x00\x00\x00\x0bIDAT\x08\xd7c\x00\x01\x00\x00\x05\x00\x01\r\n\x00\x00\x00\x00IEND\xaeB`\x82"
+        image_content = bytearray([1, 2, 3])
         image = SimpleUploadedFile(
             "test_image.png", image_content, content_type="image/png"
         )
@@ -32,6 +34,8 @@ class RecipeFormTestCase(TestCase):
         }
 
         form = RecipeForm(data=form_data, files={"image": image})
+        print(form.errors)
+
         self.assertTrue(form.is_valid())
 
     def test_invalid_form(self):
