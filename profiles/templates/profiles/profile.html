@@ -18,7 +18,13 @@
                 {% if profile.image.url is not none %}
                 {{profile.bio | safe}}
                 {% endif %}
+
+                {% if request.user == profile.user %}
+                <a href="#" class="share-icon me-3" data-bs-toggle="modal" data-bs-target="#edit-profile"><i class="fa-regular fa-pen-to-square"></i></a>
+                {% endif %}
+
             </div>
+
             <div class="profile-recipes">
                 <h2 class="text-center pb-4">Added Recipes</h2>
                 {% for recipe in profile.user.recipe_owner.all %}
@@ -29,4 +35,26 @@
             </div>
         </div>
     </div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="edit-profile" tabindex="-1" aria-labelledby="EditProfileLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="editProfile-modal-body d-flex justify-content-center">
+
+          <form action="{% url 'edit_profile' request.user.id %}" method="Post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{profile_form |crispy }}
+              {{profile_form.media}}
+              <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
 {%endblock%}
