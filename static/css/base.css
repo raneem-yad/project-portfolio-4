@@ -221,6 +221,16 @@ img.logo {
     color: var(--primary-background);
 }
 
+/**Modals **/
+.social-modal-body  div{
+    display : inline;
+}
+
+.social-modal-body i {
+    color: var(--primary-background);
+    font-size :xx-large;
+}
+
 
 /* Footer */
 footer {

@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView
-from django.utils.text import slugify
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    DeleteView,
+    UpdateView,
 )
+from django.utils.text import slugify
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from .models import Recipe, MealType
 from .forms import RecipeForm
@@ -31,21 +35,21 @@ class Recipes(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['meal_types'] = MealType.objects.all()
+        context["meal_types"] = MealType.objects.all()
         return context
 
     def get_queryset(self, **kwargs):
-        query = self.request.GET.get('q','')
-        meal_type_id = self.request.GET.get('meal_type', '')
+        query = self.request.GET.get("q", "")
+        meal_type_id = self.request.GET.get("meal_type", "")
         # Start with all recipes
         recipes = self.model.objects.all()
 
         # Filter by search query if present
         if query:
             recipes = recipes.filter(
-                Q(name__icontains=query) |
-                Q(description__icontains=query) |
-                Q(instructions__icontains=query)
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(instructions__icontains=query)
             )
 
         # Filter by meal type if selected
@@ -103,7 +107,7 @@ class RecipeDetail(DetailView):
 
 class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Recipe
-    success_url = '/recipes/'
+    success_url = "/recipes/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -113,7 +117,7 @@ class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "recipes/edit_recipe.html"
     model = Recipe
     form_class = RecipeForm
-    success_url = '/recipes/'
+    success_url = "/recipes/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
