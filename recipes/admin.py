@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Recipe, MealType, Comment
+from .models import Recipe, MealType, Comment, Bookmark
 
 
 # Register your models here.
@@ -17,3 +17,9 @@ class MealTypeAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "approved")
+@admin.register(Bookmark)
+class BookmarkAdmin(admin.ModelAdmin):
+    list_display = ("user", "display_recipes")
+
+    def display_recipes(self, obj):
+        return ", ".join([recipe.name for recipe in obj.recipes.all()])

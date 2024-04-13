@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import (
     CreateView,
     ListView,
@@ -8,8 +8,9 @@ from django.views.generic import (
 )
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .models import Recipe, MealType
+from .models import Recipe, MealType, Bookmark
 from .forms import RecipeForm
 
 
@@ -57,15 +58,6 @@ class Recipes(ListView):
             recipes = recipes.filter(meal_type_id=meal_type_id)
 
         return recipes
-        # if query:
-        #     recipes = self.model.objects.filter(
-        #         Q(name__icontains=query) |
-        #         Q(description__icontains=query) |
-        #         Q(instructions__icontains=query)
-        #     )
-        # else:
-        #     recipes = self.model.objects.all()
-        # return recipes
 
 
 class AddRecipe(LoginRequiredMixin, CreateView):
@@ -121,3 +113,17 @@ class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
+
+
+@login_required
+def bookmark_recipe(request, slug):
+    if request.method == 'GET':
+        user = request.user
+        recipe = Recipe.objects.get(slug=slug)
+        # Check if the recipe is already bookmarked
+        if not Bookmark.objects.filter(user=user, recipes=recipe).exists():
+            # If not bookmarked, add it to the user's bookmarks
+            bookmark, created = Bookmark.objects.get_or_create(user=user)
+            bookmark.recipes.add(recipe)
+    # Redirect back to the recipe detail page
+    return redirect('recipe_detail', slug=slug)

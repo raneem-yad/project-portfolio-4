@@ -74,3 +74,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.title} by {self.author}"
+
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipes = models.ManyToManyField(Recipe)
