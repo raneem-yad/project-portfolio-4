@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
 from django.db.models import Q
-from .models import Recipe
+from .models import Recipe, MealType
 from .forms import RecipeForm
 
 
@@ -29,17 +29,39 @@ class Recipes(ListView):
     model = Recipe
     context_object_name = "recipes"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['meal_types'] = MealType.objects.all()
+        return context
+
     def get_queryset(self, **kwargs):
         query = self.request.GET.get('q','')
+        meal_type_id = self.request.GET.get('meal_type', '')
+        # Start with all recipes
+        recipes = self.model.objects.all()
+
+        # Filter by search query if present
         if query:
-            recipes = self.model.objects.filter(
+            recipes = recipes.filter(
                 Q(name__icontains=query) |
                 Q(description__icontains=query) |
                 Q(instructions__icontains=query)
             )
-        else:
-            recipes = self.model.objects.all()
+
+        # Filter by meal type if selected
+        if meal_type_id:
+            recipes = recipes.filter(meal_type_id=meal_type_id)
+
         return recipes
+        # if query:
+        #     recipes = self.model.objects.filter(
+        #         Q(name__icontains=query) |
+        #         Q(description__icontains=query) |
+        #         Q(instructions__icontains=query)
+        #     )
+        # else:
+        #     recipes = self.model.objects.all()
+        # return recipes
 
 
 class AddRecipe(LoginRequiredMixin, CreateView):
