@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
+from django.db.models import Q
 from .models import Recipe
 from .forms import RecipeForm
 
@@ -27,6 +28,18 @@ class Recipes(ListView):
     template_name = "recipes/recipes.html"
     model = Recipe
     context_object_name = "recipes"
+
+    def get_queryset(self, **kwargs):
+        query = self.request.GET.get('q','')
+        if query:
+            recipes = self.model.objects.filter(
+                Q(name__icontains=query) |
+                Q(description__icontains=query) |
+                Q(instructions__icontains=query)
+            )
+        else:
+            recipes = self.model.objects.all()
+        return recipes
 
 
 class AddRecipe(LoginRequiredMixin, CreateView):

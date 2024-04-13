@@ -5,6 +5,11 @@
 {%block content %}
 
 <div class="container">
+    <form class="d-flex" role="search" method="get" action="{% url 'recipes' %}">
+        <input type="search" name="q" class="form-control me-2" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+
     <div class="form-title text-center p-4 justify-content-center">
             <h1>Latest Recipes</h1>
     </div>
