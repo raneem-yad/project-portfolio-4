@@ -1,0 +1,1 @@
+web: gunicorn zaitouna_website.wsgi
