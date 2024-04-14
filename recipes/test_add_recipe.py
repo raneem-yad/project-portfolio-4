@@ -32,7 +32,7 @@
 #             'image' :image,
 #             'image_alt': 'Test Recipe Image',
 #             'meal_type': meal_type_id,
-#             'preparation_time': 30,  # Provide a valid preparation time in minutes
+ # Provide a valid preparation time in minutes
 #             'cooking_time': 60,  # Provide a valid cooking time in minutes
 #             'serves': 4,  # P
 #         }
@@ -56,6 +56,6 @@
 #         self.assertFormError(response, 'form', 'ingredients', 'This field is required.')
 #         self.assertFormError(response, 'form', 'image_alt', 'This field is required.')
 #         self.assertFormError(response, 'form', 'meal_type', 'This field is required.')
-#         self.assertFormError(response, 'form', 'preparation_time', 'This field is required.')
+#
 #         self.assertFormError(response, 'form', 'cooking_time', 'This field is required.')
 #         self.assertFormError(response, 'form', 'serves', 'This field is required.')

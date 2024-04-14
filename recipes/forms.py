@@ -17,8 +17,7 @@ class RecipeForm(forms.ModelForm):
             "image_alt",
             "meal_type",
             "difficulty",
-            "preparation_time",
-            "cooking_time",
+            "prep_time",
             "serves",
             "status",
         ]
@@ -28,14 +27,13 @@ class RecipeForm(forms.ModelForm):
         labels = {
             "name": "Recipe Name",
             "description": "Some More Description about the Recipe",
-            "instructions": "How we can make your Recipe (instructions) ",
-            "ingredients": "What are the Recipe Ingredients",
+            "instructions": "The recipe instructions ",
+            "ingredients": "The Recipe Ingredients",
             "image": "Image of your Recipe",
             "image_alt": "Description of your Image",
             "meal_type": "Pick which meal type your recipe is!",
             "difficulty": "Difficulty",
-            "preparation_time": "Preparation Time in minutes",
-            "cooking_time": "Cooking time in minutes",
+            "prep_time": "Cooking time in minutes",
             "serves": "Serves",
         }
 

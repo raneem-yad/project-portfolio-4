@@ -27,8 +27,7 @@ class RecipeFormTestCase(TestCase):
             "image_alt": "Test Recipe Image",
             "meal_type": self.meal_type.pk,
             "difficulty": 0,
-            "preparation_time": 30,
-            "cooking_time": 60,
+            "prep_time": 60,
             "serves": 4,
             "status": 0,
         }
@@ -49,6 +48,5 @@ class RecipeFormTestCase(TestCase):
         self.assertTrue(form.errors["image_alt"])
         self.assertTrue(form.errors["meal_type"])
         self.assertTrue(form.errors["difficulty"])
-        self.assertTrue(form.errors["preparation_time"])
         self.assertTrue(form.errors["cooking_time"])
         self.assertTrue(form.errors["serves"])
