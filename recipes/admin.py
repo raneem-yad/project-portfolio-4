@@ -17,6 +17,8 @@ class MealTypeAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "approved")
+
+
 @admin.register(Bookmark)
 class BookmarkAdmin(admin.ModelAdmin):
     list_display = ("user", "display_recipes")

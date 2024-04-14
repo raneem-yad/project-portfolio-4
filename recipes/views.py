@@ -107,15 +107,17 @@ class RecipeDetail(FormMixin, DetailView):
             # Get the current user's bookmarks
             user_bookmarks = Bookmark.objects.filter(user=self.request.user)
             # Check if the current recipe is bookmarked by the user
-            context['is_bookmarked'] = user_bookmarks.filter(recipes=self.object).exists()
+            context["is_bookmarked"] = user_bookmarks.filter(
+                recipes=self.object
+            ).exists()
         else:
-            context['is_bookmarked'] = False
-        context['comments'] = recipe.comments.filter(approved=True).order_by("-created_on")
-        context['comment_count'] = context['comments'].count()
-        context['comment_form'] = CommentForm
+            context["is_bookmarked"] = False
+        context["comments"] = recipe.comments.order_by("-created_on")
+        context["comment_count"] = context["comments"].count()
+        context["comment_form"] = CommentForm
         return context
 
-    def post(self, request,*args, **kwargs):
+    def post(self, request, *args, **kwargs):
         recipe = self.get_object()
         form = self.get_form()
         if form.is_valid():
@@ -124,15 +126,11 @@ class RecipeDetail(FormMixin, DetailView):
             comment.recipe = recipe
             comment.save()
             # Add success message
-            messages.success(
-                self.request,
-                'Comment submitted and awaiting approval'
-            )
+            messages.success(self.request, "Comment submitted and awaiting approval")
             # return HttpResponseRedirect(request.path_info)  # Redirect to the same page
-            return redirect('recipe_detail', slug=recipe.slug)
+            return redirect("recipe_detail", slug=recipe.slug)
         else:
             return self.form_invalid(form)
-
 
 
 class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -152,13 +150,12 @@ class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
+
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
     """
     if request.method == "POST":
-
-        # queryset = Recipe.objects.all
         recipe = get_object_or_404(Recipe, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
         # By specifying instance=comment, any changes made to the form will be applied to the existing Comment,
@@ -170,17 +167,36 @@ def comment_edit(request, slug, comment_id):
             comment.recipe = recipe
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.add_message(request, messages.SUCCESS, "Comment Updated!")
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR, "Error updating comment!")
 
     # reverse is a Django function that constructs a URL from the provided URL path name and any
     # relevant URL arguments: args=[slug].
-    return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+    return HttpResponseRedirect(reverse("recipe_detail", args=[slug]))
+
+
+def comment_delete(request, slug, comment_id):
+    """
+    view to delete comment
+    """
+    recipe = get_object_or_404(Recipe, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.ERROR, "Comment deleted!")
+    else:
+        messages.add_message(
+            request, messages.ERROR, "You can only delete your own comments!"
+        )
+
+    return HttpResponseRedirect(reverse("recipe_detail", args=[slug]))
+
 
 @login_required
 def bookmark_recipe(request, slug):
-    if request.method == 'GET':
+    if request.method == "GET":
         user = request.user
         recipe = Recipe.objects.get(slug=slug)
         # Check if the recipe is already bookmarked
@@ -188,17 +204,14 @@ def bookmark_recipe(request, slug):
             # If not bookmarked, add it to the user's bookmarks
             bookmark, created = Bookmark.objects.get_or_create(user=user)
             bookmark.recipes.add(recipe)
-            messages.success(
-                request,
-                'Recipe was booked Successfully!'
-            )
+            messages.success(request, "Recipe was booked Successfully!")
     # Redirect back to the recipe detail page
-    return redirect('recipe_detail', slug=slug)
+    return redirect("recipe_detail", slug=slug)
 
 
 @login_required
 def remove_bookmark(request, slug):
-    if request.method == 'GET':
+    if request.method == "GET":
         user = request.user
         recipe = Recipe.objects.get(slug=slug)
         # Check if the recipe is bookmarked
@@ -207,8 +220,7 @@ def remove_bookmark(request, slug):
             # If bookmark exists, remove the recipe from the user's bookmarks
             bookmark.recipes.remove(recipe)
             messages.success(
-                request,
-                'Recipe was removed from bookmarked list Successfully!'
+                request, "Recipe was removed from bookmarked list Successfully!"
             )
     # Redirect back to the recipe detail page
-    return redirect('recipe_detail', slug=slug)
+    return redirect("recipe_detail", slug=slug)
