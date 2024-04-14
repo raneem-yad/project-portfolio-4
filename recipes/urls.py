@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import AddRecipe, Recipes, RecipeDetail, DeleteRecipe, EditRecipe, bookmark_recipe, remove_bookmark
+from .views import (AddRecipe, Recipes, RecipeDetail, DeleteRecipe, EditRecipe, bookmark_recipe, remove_bookmark, comment_edit )
 
 urlpatterns = [
     path("add_recipe/", AddRecipe.as_view(), name="add_recipe"),
@@ -9,5 +9,6 @@ urlpatterns = [
     path("edit/<slug:slug>/", EditRecipe.as_view(), name="edit_recipe"),
     path('bookmark/<slug:slug>/', bookmark_recipe, name='bookmark_recipe'),
     path('remove-bookmark/<slug:slug>/', remove_bookmark, name='remove_bookmark'),
+    path('<slug:slug>/edit_comment/<int:comment_id>',comment_edit, name='comment_edit'),
     path("", Recipes.as_view(), name="recipes"),
 ]

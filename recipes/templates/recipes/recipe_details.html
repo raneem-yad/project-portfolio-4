@@ -137,13 +137,24 @@
               {{ comment.created_on }}
             </span> wrote:
           </p>
-          <div id="comment{{ comment.id }}">
+          <div id="comment-title{{ comment.id }}">
+            {{ comment.title  }}
+          </div>
+          <div id="comment-body{{ comment.id }}">
             {{ comment.body | linebreaks }}
           </div>
           {% if not comment.approved and comment.author == user %}
           <p class="approval">
             This comment is awaiting approval
           </p>
+          {% endif %}
+          {% if user.is_authenticated and comment.author == user %}
+          <button class="btn btn-edit" comment_id="{{ comment.id }}">
+            <i class="fa-regular fa-pen-to-square"></i></button>
+<!--          <a href="{% url 'edit_recipe' recipe.slug %}" class="edit-icon me-3"><i class="fa-regular fa-pen-to-square"></i></a>-->
+
+<!--          <a href="#" class="share-icon me-3" data-bs-toggle="modal" data-bs-target="#edit-comment"><i class="fa-regular fa-pen-to-square"></i></a>-->
+          <a href="" class="delete-icon me-3"><i class="fa-regular fa-trash-can"></i></a>
           {% endif %}
         </div>
         <!-- Our for loop ends here -->
@@ -172,7 +183,8 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modals -->
+<!-- Social Media share Modal -->
 <div class="modal fade" id="social-media-share" tabindex="-1" aria-labelledby="socialMediaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views.generic import (
     CreateView,
     ListView,
@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
-from .models import Recipe, MealType, Bookmark
+from django.http import HttpResponseRedirect
+from .models import Recipe, MealType, Bookmark, Comment
 from .forms import RecipeForm, CommentForm
 
 
@@ -151,6 +152,31 @@ class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
+def comment_edit(request, slug, comment_id):
+    """
+    view to edit comments
+    """
+    if request.method == "POST":
+
+        # queryset = Recipe.objects.all
+        recipe = get_object_or_404(Recipe, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        # By specifying instance=comment, any changes made to the form will be applied to the existing Comment,
+        # instead of creating a new one.
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.recipe = recipe
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    # reverse is a Django function that constructs a URL from the provided URL path name and any
+    # relevant URL arguments: args=[slug].
+    return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 @login_required
 def bookmark_recipe(request, slug):
