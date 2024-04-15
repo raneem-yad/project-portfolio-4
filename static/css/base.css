@@ -217,6 +217,11 @@ img.logo {
 .profile-img {
 }
 
+/** rating */
+.star {
+    cursor: pointer;
+}
+
 /** Alerts - Messages **/
 .alert{
     background-color: #194b4485;

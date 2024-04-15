@@ -237,15 +237,17 @@ def remove_bookmark(request, slug):
 
 
 def rate_recipe(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == 'POST':
-        form = RatingForm(request.POST)
-        if form.is_valid():
-            rating = form.save(commit=False)
-            rating.user = request.user
-            rating.recipe = recipe
+        rating_value = int(request.POST.get('rating'))
+        user = request.user
+        try:
+            rating = Rating.objects.get(user=user, recipe=recipe)
+            rating.rating = rating_value
             rating.save()
-            return redirect('recipe_detail', slug=recipe.slug)
+        except Rating.DoesNotExist:
+            rating = Rating.objects.create(user=user, recipe=recipe, rating=rating_value)
+        # Redirect to the recipe details page after rating submission
+        return redirect('recipe_detail', slug=recipe.slug)
     else:
-        form = RatingForm()
-    return render(request, 'recipe_details.html', {'rating_form': form, 'recipe': recipe})
+        return redirect('recipe_detail', slug=recipe.slug)

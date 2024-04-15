@@ -66,31 +66,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //    rating a recipe
     const stars = document.querySelectorAll('.star');
+
     stars.forEach(star => {
-        star.addEventListener('click', function(event) {
-            event.preventDefault();
+        star.addEventListener('mouseover', function() {
             const rating = this.getAttribute('data-rating');
-            const recipeId = // Get the recipe ID from the HTML or server-side context
-            rateRecipe(recipeId, rating);
+            // Add filled class to all stars up to the hovered star
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('fas'); // 'fas' represents filled star
+            }
+        });
+
+        star.addEventListener('mouseout', function() {
+            // Remove filled class from all stars
+            stars.forEach(star => {
+                star.classList.remove('fas');
+            });
+        });
+        star.addEventListener('click', function(event) {
+            const value = $(this).data('value');
+            // Set the rating value in the hidden input
+            $('#rating-value').val(value);
+            // Remove 'far' class (empty star) from all stars
+            $('.star').removeClass('fas').addClass('far');
+            // Add 'fas' class (filled star) to clicked star and all preceding stars
+            $(this).prevAll('.star').addBack().addClass('fas');
+            // Submit the form
+            $('#rating-form').submit();
         });
     });
 
-    function rateRecipe(recipeId, rating) {
-        // Send AJAX request to the server to save the rating
-        // Example using jQuery AJAX:
-        $.ajax({
-            type: 'POST',
-            url: '/rate_recipe/' + recipeId + '/',
-            data: {
-                'rating': rating,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                // Optionally update UI to reflect the new rating
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
-            }
-        });
-    }
+//    function rateRecipe(recipeSlug, rating) {
+//        $.ajax({
+//            type: 'POST',
+//            url: '/recipes/rate_recipe/' + recipeSlug + '/',
+//            data: {
+//                'rating': rating,
+//                // Include CSRF token from template tag
+//                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+//            },
+//            success: function(response) {
+//                if (response.success) {
+//                    // Redirect to the same page
+//                    window.location.href = window.location.href;
+//                } else {
+//                    // Handle errors if needed
+//                }
+//            },
+//            error: function(xhr, status, error) {
+//                console.error('Error:', error);
+//            }
+//        });
+//
+//    }
 });
