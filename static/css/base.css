@@ -233,6 +233,23 @@ img.logo {
 }
 
 
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items : center
+}
+
+/** Pagination */
+.page-link {
+    color: var(--primary-background);
+}
+.page-link:hover {
+    color: #7dce82;
+}
+.active>.page-link, .page-link.active {
+    background-color: #194b44ab;
+    border-color: #194b4447;
+}
 
 /** Profiles */
 .profile-img {

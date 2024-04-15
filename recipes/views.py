@@ -9,6 +9,7 @@ from django.views.generic import (
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Avg, Count
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
@@ -20,11 +21,26 @@ from .forms import RecipeForm, CommentForm
 # Create your views here.
 def home_recipe_view(request):
     weekly_recipe = Recipe.objects.filter(is_weekly=True).last()
-    recipe_list = Recipe.objects.all()
+    recipe_list = Recipe.objects.annotate(
+        average_rating=Avg('ratings__rating')
+    )
+
+    # Pagination
+    paginator = Paginator(recipe_list, 6)  # Show 10 recipes per page
+    page_number = request.GET.get('page')
+    try:
+        recipe_list = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        recipe_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        recipe_list = paginator.page(paginator.num_pages)
+
     return render(
         request,
         "home/index.html",
-        {"weekly_recipe": weekly_recipe, "recipe_list": recipe_list},
+        {"weekly_recipe": weekly_recipe, "recipe_list": recipe_list, 'star_range': range(1, 6)},
     )
 
 

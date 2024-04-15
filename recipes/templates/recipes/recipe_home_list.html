@@ -24,12 +24,22 @@
                             {{ recipe.user.username }} | <i class="far fa-calendar-alt"></i> {{recipe.posted_date}}
                         </p>
                         <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
+                        <span class="badge rounded-pill bg-success">{{recipe.get_difficulty_display}}</span>
                         <span class="badge rounded-pill bg-success">cook time : {{recipe.prep_time}} min</span>
                         <span class="badge rounded-pill bg-success">serves :{{recipe.serves}}</span>
                         <p class="card-text py-3">{{recipe.description}}</p>
                     </div>
                     <div class="card-footer bg-transparent border-success">
                         <a href="{% url 'recipe_detail' recipe.slug %}"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary ">Learn More</a>
+                        <span>
+                        {% for i in star_range %}
+                            {% if i <= recipe.average_rating %}
+                                <i class="star fas fa-star"></i>  <!-- Filled star -->
+                            {% else %}
+                                <i class="star far fa-star"></i>  <!-- Empty star -->
+                            {% endif %}
+                        {% endfor %}
+                        </span>
                     </div>
 <!--                </div>-->
             </div>
@@ -37,4 +47,55 @@
         {% endfor %}
 <!--        </div>-->
 
+    </div>
+    <!-- Pagination controls -->
+
+    <div class="my-4">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            {% if recipe_list.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">&laquo; First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ recipe_list.previous_page_number }}">Previous</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">&laquo; First</span>
+              </li>
+              <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+              </li>
+            {% endif %}
+
+            {% for num in recipe_list.paginator.page_range %}
+              {% if num == recipe_list.number %}
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link">{{ num }}</span>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if recipe_list.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ recipe_list.next_page_number }}">Next</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ recipe_list.paginator.num_pages }}">Last &raquo;</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Next</span>
+              </li>
+              <li class="page-item disabled">
+                <span class="page-link">Last &raquo;</span>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
     </div>
