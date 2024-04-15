@@ -230,7 +230,7 @@ def bookmark_recipe(request, slug):
             # If not bookmarked, add it to the user's bookmarks
             bookmark, created = Bookmark.objects.get_or_create(user=user)
             bookmark.recipes.add(recipe)
-            messages.success(request, "Recipe was booked Successfully!")
+            messages.success(request, "Recipe was added to bookmarked list Successfully!")
     # Redirect back to the recipe detail page
     return redirect("recipe_detail", slug=slug)
 
@@ -251,7 +251,7 @@ def remove_bookmark(request, slug):
     # Redirect back to the recipe detail page
     return redirect("recipe_detail", slug=slug)
 
-
+@login_required
 def rate_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == 'POST':

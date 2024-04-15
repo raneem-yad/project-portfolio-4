@@ -269,9 +269,14 @@ img.logo {
 }
 
 .info {
+    border-bottom: 1px solid #184b4424;
+    padding-bottom: 10px;
     width: 100%;
     text-align: center;
+}
 
+.info .edit i{
+    color: var(--primary-background);
 }
 
 /** Comments **/

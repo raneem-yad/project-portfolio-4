@@ -4,29 +4,44 @@
 {%block content %}
     <div class="container">
         <div class="profile">
-            <div class="info">
-                <div class="profile-img text-center">
+            <div class="info row justify-content-center align-items-center">
+                <div class="profile-img text-center col-12 col-sm-2">
                     {% if profile.image.url is not none %}
                     <img src="{{profile.image.url}}" alt="{{profile.user.username}}'s image ">
                     {% else%}
                     <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
                     {% endif %}
                 </div>
-                <h1>{{profile.user.username}}</h1>
-                <p><strong>Joined :</strong>{{ profile.user.date_joined|date:'d M Y'}}</p>
-                <p><strong>Recipes :</strong>{{ profile.user.recipe_owner.count}}</p>
-                {% if profile.image.url is not none %}
-                {{profile.bio | safe}}
-                {% endif %}
+                <div class="col-12 col-sm-4">
+                    <h1>{{profile.user.username}}</h1>
+                    <p><strong>Joined :</strong>{{ profile.user.date_joined|date:'d M Y'}}</p>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <p><strong>Added Recipes :</strong>{{ profile.user.recipe_owner.count}}</p>
+                    <p><strong>Bookmarked Recipes :</strong>{{ profile.user.bookmarks.count}}</p>
+                </div>
+                <div class="col-12 col-sm-3">
+                    <p>About </p>
+                    {% if profile.bio %}
+                    {{profile.bio | safe}}
+                    {% endif %}
+                </div>
+                <div class="col-12 col-sm-1 edit">
+                    {% if request.user == profile.user %}
+                    <a href="#" class="share-icon me-3" data-bs-toggle="modal" data-bs-target="#edit-profile"><i class="fa-regular fa-pen-to-square"></i></a>
+                    {% endif %}
+                </div>
 
-                {% if request.user == profile.user %}
-                <a href="#" class="share-icon me-3" data-bs-toggle="modal" data-bs-target="#edit-profile"><i class="fa-regular fa-pen-to-square"></i></a>
-                {% endif %}
+
+
 
             </div>
 
-            <div class="profile-recipes">
-                <h2 class="text-center pb-4">Added Recipes</h2>
+            <div class="profile-recipes ">
+                <div class="form-title text-center m-3 align-items-center justify-content-center">
+                    <h2>Added Recipes</h2>
+                </div>
+
                 {% for recipe in profile.user.recipe_owner.all %}
                 <a href="{%url 'recipe_detail' recipe.slug %}"><h3>{{recipe.name}}</h3></a>
                 {{recipe.posted_date}}
@@ -35,17 +50,19 @@
             </div>
 
             <div class="profile-bookmarks">
-                <h2 class="text-center pb-4">Bookmarked Recipes</h2>
-                    {% if bookmarked_recipes %}
-                    <ul>
-                           {% for recipe_name, recipe_slug in bookmarked_recipes %}
-                                <li><a href="{% url 'recipe_detail' recipe_slug %}">{{ recipe_name }}</a></li>
-                            {% endfor %}
-                            <hr>
-                    </ul>
-                     {% else %}
-                    <p>No bookmarked recipes.</p>
-                    {% endif %}
+                <div class="form-title text-center m-3 align-items-center justify-content-center">
+                    <h2>Bookmarked Recipes</h2>
+                </div>
+                {% if bookmarked_recipes %}
+                <ul>
+                       {% for recipe_name, recipe_slug in bookmarked_recipes %}
+                            <li><a href="{% url 'recipe_detail' recipe_slug %}">{{ recipe_name }}</a></li>
+                        {% endfor %}
+                        <hr>
+                </ul>
+                 {% else %}
+                <p>No bookmarked recipes.</p>
+                {% endif %}
             </div>
         </div>
     </div>
