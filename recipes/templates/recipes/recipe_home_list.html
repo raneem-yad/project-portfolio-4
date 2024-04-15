@@ -2,32 +2,39 @@
     <div class="form-title text-center p-4 justify-content-center">
             <h1>Latest Recipes</h1>
     </div>
-    <div class=" d-flex flex-row flex-wrap justify-content-center">
-        <div class="card-group">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+<!--        <div class="card-group">-->
         {% for recipe in recipe_list %}
 <!--        <a href="" class="recipes" aria-label="Click to view {{recipe.title}}"></a>-->
 
-            <div class="card recipe-card m-4">
-                  <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
-                <div class="card-body">
-                    <h3 class="card-title">{{recipe.name}}</h3>
-                    <p>
-                        {% if recipe.user.profile.image.url is not none %}
-                            <img src="{{ recipe.user.profiles_owner.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
-                        {% else %}
-                            <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
-                        {% endif %}
-                        {{ recipe.user.username }} | <i class="far fa-calendar-alt"></i> {{recipe.posted_date}}
-                    </p>
-                    <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
-                    <span class="badge rounded-pill bg-success">cook time :{{recipe.cooking_time}}</span>
-                    <span class="badge rounded-pill bg-success">serves :{{recipe.serves}}</span>
-                    <p class="card-text py-3">{{recipe.description}}</p>
-                </div>
-                <div class="card-footer bg-transparent border-success">
-                    <a href="{% url 'recipe_detail' recipe.slug %}"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary ">more</a>
-                </div>
+        <div class="card-group">
+<!--            <div class="col">-->
+                <div class="card recipe-card">
+                      <a href="{% url 'recipe_detail' recipe.slug %}"  aria-label="Click to view {{recipe.title}}">
+                          <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
+                      </a>
+                    <div class="card-body">
+                        <h3 class="card-title">{{recipe.name}}</h3>
+                        <p class="card-author">
+                            {% if recipe.user.profile.image.url is not none %}
+                                <img src="{{ recipe.user.profiles_owner.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+                            {% else %}
+                                <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
+                            {% endif %}
+                            {{ recipe.user.username }} | <i class="far fa-calendar-alt"></i> {{recipe.posted_date}}
+                        </p>
+                        <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
+                        <span class="badge rounded-pill bg-success">cook time : {{recipe.prep_time}} min</span>
+                        <span class="badge rounded-pill bg-success">serves :{{recipe.serves}}</span>
+                        <p class="card-text py-3">{{recipe.description}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">
+                        <a href="{% url 'recipe_detail' recipe.slug %}"  aria-label="Click to view {{recipe.title}}" class="btn btn-primary ">Learn More</a>
+                    </div>
+<!--                </div>-->
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+<!--        </div>-->
+
     </div>

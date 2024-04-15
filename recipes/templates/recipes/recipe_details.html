@@ -59,38 +59,8 @@
               <span data-average="{% if average_rating is None %}0{% else %}{{ average_rating }}{% endif %}">
                 <small>{{rating_count}} </small></span>
           </form>
-
-
-
-<!--          <form id="rating-form" method="POST" action="{% url 'rate_recipe' recipe.id %}">-->
-<!--                {% csrf_token %}-->
-<!--                <input type="hidden" id="rating-value" name="rating" value="0">-->
-<!--                <i class="star far fa-star" data-rating="1"></i>-->
-<!--                <i class="star far fa-star" data-rating="2"></i>-->
-<!--                <i class="star far fa-star" data-rating="3"></i>-->
-<!--                <i class="star far fa-star" data-rating="4"></i>-->
-<!--                <i class="star far fa-star" data-rating="5"></i>-->
-<!--            </form>-->
       </div>
-<!--    rating -->
-<!--      <div class="my-2">-->
-<!--        <div class="w-100 float-left">-->
-<!--          <div class="float-left">-->
-<!--            <div class="fabrx-ratings has-rating rating">-->
-<!--              <input type="radio" id="radio1" name="rate1" value="1" checked="checked">-->
-<!--              <label for="radio1" class="custom-starboxes"> <i class="fa-solid fa-star"></i></label>-->
-<!--              <input type="radio" id="radio2" name="rate1" value="2">-->
-<!--              <label for="radio2" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
-<!--              <input type="radio" id="radio3" name="rate1" value="3">-->
-<!--              <label for="radio3" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
-<!--              <input type="radio" id="radio4" name="rate1" value="4">-->
-<!--              <label for="radio4" class="custom-starboxes"><i class="fa-solid fa-star"></i></label>-->
-<!--              <input type="radio" id="radio5" name="rate1" value="5">-->
-<!--              <label for="radio5" class="custom-starboxes"><i class="fa-regular fa-star"></i></label>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+
   </div>
   <!-- Description Section -->
   <div class="row mt-3 recipe-desc">
