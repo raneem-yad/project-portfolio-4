@@ -45,16 +45,32 @@
         <small>{{ comment_count }}</small>
       </div>
       <div class="my-2 mx-4 tools">
-          {% if average_rating %}
+          <form id="rating-form" method="POST" action="{% url 'rate_recipe' recipe.id %}">
+              {% csrf_token %}
+
+              <input type="hidden" id="rating-value" name="rating" value="0">
                 {% for i in star_range %}
                     {% if i <= average_rating %}
-                        <i class="fas fa-star"></i>  <!-- Filled star -->
+                        <i class="star fas fa-star" data-rating="{{i}}"></i>  <!-- Filled star -->
                     {% else %}
-                        <i class="far fa-star"></i>
+                        <i class="star far fa-star" data-rating="{{i}}"></i>
                     {% endif %}
                 {% endfor %}
-          {% endif %}
-          <small>{{rating_count}} </small>
+              <span data-average="{% if average_rating is None %}0{% else %}{{ average_rating }}{% endif %}">
+                <small>{{rating_count}} </small></span>
+          </form>
+
+
+
+<!--          <form id="rating-form" method="POST" action="{% url 'rate_recipe' recipe.id %}">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden" id="rating-value" name="rating" value="0">-->
+<!--                <i class="star far fa-star" data-rating="1"></i>-->
+<!--                <i class="star far fa-star" data-rating="2"></i>-->
+<!--                <i class="star far fa-star" data-rating="3"></i>-->
+<!--                <i class="star far fa-star" data-rating="4"></i>-->
+<!--                <i class="star far fa-star" data-rating="5"></i>-->
+<!--            </form>-->
       </div>
 <!--    rating -->
 <!--      <div class="my-2">-->
@@ -127,24 +143,6 @@
   </div>
 
 
-<!--  rating -->
-<div id="rating-stars" data-recipe="{{ recipe.slug }}">
-    <i class="star far fa-star" data-rating="1"></i>
-    <i class="star far fa-star" data-rating="2"></i>
-    <i class="star far fa-star" data-rating="3"></i>
-    <i class="star far fa-star" data-rating="4"></i>
-    <i class="star far fa-star" data-rating="5"></i>
-</div>
-
-<form id="rating-form" method="POST" action="{% url 'rate_recipe' recipe.id %}">
-    {% csrf_token %}
-    <input type="hidden" id="rating-value" name="rating" value="0">
-    <i class="star far fa-star" data-value="1"></i>
-    <i class="star far fa-star" data-value="2"></i>
-    <i class="star far fa-star" data-value="3"></i>
-    <i class="star far fa-star" data-value="4"></i>
-    <i class="star far fa-star" data-value="5"></i>
-</form>
 
 
 <!--  Comments -->

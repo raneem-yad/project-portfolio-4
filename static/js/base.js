@@ -66,13 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //    rating a recipe
     const stars = document.querySelectorAll('.star');
-
+    const spanElement = document.querySelector('span[data-average]');
+    const averageRating = spanElement.getAttribute('data-average');
+    const averageRatingNumber = parseInt(averageRating);
     stars.forEach(star => {
         star.addEventListener('mouseover', function() {
             const rating = this.getAttribute('data-rating');
             // Add filled class to all stars up to the hovered star
             for (let i = 0; i < rating; i++) {
                 stars[i].classList.add('fas'); // 'fas' represents filled star
+                stars[i].classList.remove('far'); // 'fas' represents filled star
             }
         });
 
@@ -80,10 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove filled class from all stars
             stars.forEach(star => {
                 star.classList.remove('fas');
+                star.classList.add('far');
             });
+            // Refill the stars according to average_rating
+            for (let i = 0; i < averageRatingNumber; i++) {
+                stars[i].classList.add('fas');
+                stars[i].classList.remove('far');
+            }
         });
         star.addEventListener('click', function(event) {
-            const value = $(this).data('value');
+            const value = $(this).data('rating');
             // Set the rating value in the hidden input
             $('#rating-value').val(value);
             // Remove 'far' class (empty star) from all stars
