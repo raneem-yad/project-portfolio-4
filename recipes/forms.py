@@ -19,7 +19,6 @@ class RecipeForm(forms.ModelForm):
             "difficulty",
             "prep_time",
             "serves",
-            "status",
         ]
         ingredients = forms.CharField(widget=RichTextWidget())
         instructions = forms.CharField(widget=RichTextWidget())

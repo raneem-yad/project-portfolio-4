@@ -5,7 +5,6 @@ from djrichtextfield.models import RichTextField
 from django_resized import ResizedImageField
 
 # Choices here
-STATUS = ((0, "Draft"), (1, "Published"))
 DIFFICULTY = ((0, "Easy"), (1, "Medium"), (2, "Hard"))
 
 
@@ -51,8 +50,6 @@ class Recipe(models.Model):
     serves = models.PositiveIntegerField()
     prep_time = models.PositiveIntegerField(default=1)
     posted_date = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-posted_date"]
