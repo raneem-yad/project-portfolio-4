@@ -274,6 +274,27 @@ img.logo {
 
 }
 
+/** Comments **/
+.comments{
+    border-top: 1px solid #184b4499;
+    padding-top: 10px;
+}
+.faded {
+    color: rgb(172, 175, 175);
+}
+
+.approval {
+    color: rgb(222, 146, 168);
+}
+
+.comment{
+    border-bottom: 1px solid #184b4424;
+    padding: 10px;
+}
+
+.comment-icon i {
+    color : var(--primary-background);
+}
 /**Tools **/
 .tools i {
     /* color: black; */
@@ -311,4 +332,25 @@ footer img {
 
 i {
     color: var(--accent);
+}
+
+/* Media Query  */
+@media screen and (min-width: 1024px) {
+    .comments  {
+        margin: 2rem;
+    }
+
+     .comments-add {
+        margin: 2rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .comments  {
+        margin: 4rem;
+    }
+
+     .comments-add {
+        margin: 4rem;
+    }
 }

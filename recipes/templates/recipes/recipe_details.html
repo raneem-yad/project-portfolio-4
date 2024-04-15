@@ -64,6 +64,7 @@
       </div>
 
   </div>
+
   <!-- Description Section -->
   <div class="row mt-3 recipe-desc">
     <div class="col">
@@ -87,7 +88,7 @@
       <!-- More Steps -->
     </div>
     <!-- Recipe Details -->
-    <div class="col-md-3">
+    <div class="col-md-3 mx-1">
       <h2>Details</h2>
       <ul class="list-unstyled ">
         <li class="tools">
@@ -109,75 +110,96 @@
       </ul>
     </div>
   </div>
-  <div class="row mt-3">
+
+
+  <div class="row m-2">
     <h2>Instructions</h2>
       {{recipe.instructions | safe }}
   </div>
+</div>
 
+<section class="container">
+    <!--Comments -->
+  <div class="row comments">
+    {% if comments %}
+        {% for comment in comments %}
+        <!-- Media object -->
+        <div class="d-flex comment {% if not comment.approved and comment.author == user %}
+              faded{% elif not comment.approved %} d-none{% endif %}">
+          <!-- Image -->
+          <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
+          <img
+            src="{{comment.author.profile.image.url}}"
+            alt="{{comment.author}}"
+            class="me-3 rounded-circle"
+            style="width: 60px; height: 60px;"
+          />
+          </a>
+          <!-- Media body -->
+          <div>
+              <h5 class="fw-bold">
+                {{comment.author}}
 
+              </h5>
+              <small class="text-muted">Posted on  {{ comment.created_on }}</small>
+              <p id="comment-title{{ comment.id }}">
+                {{ comment.title }}
+              </p>
+              <p id="comment-body{{ comment.id }}">
+                {{ comment.body  }}
+              </p>
+              {% if not comment.approved and comment.author == user %}
+              <p class="approval">
+                This comment is awaiting approval
+              </p>
+              {% endif %}
+          </div>
+            <!-- Media body -->
+          <div class="ms-auto">
+            {% if user.is_authenticated and comment.author == user %}
+                <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i>
+                </button>
+                {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+
+        <!-- Media object -->
+
+    {% else %}
+      <div class="form-title my-4">
+                <h1>Did you Try this Recipe?</h1>
+      </div>
+      <h5>Share your Experience with us</h5>
+    {% endif %}
+    </div>
 
 
 <!--  Comments -->
   <!-- Displaying Comments -->
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <h3>Comments:</h3>
-      <div class="card-body">
-        <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
-        {% for comment in comments %}
-        <div class="p-2 comments
-          {% if not comment.approved and comment.author == user %}
-          faded{% elif not comment.approved %} d-none{% endif %}">
-          <p class="font-weight-bold">
-            {{ comment.author }}
-            <span class="font-weight-normal">
-              {{ comment.created_on }}
-            </span> wrote:
-          </p>
-          <div id="comment-title{{ comment.id }}">
-            {{ comment.title  }}
-          </div>
-          <div id="comment-body{{ comment.id }}">
-            {{ comment.body | linebreaks }}
-          </div>
-          {% if not comment.approved and comment.author == user %}
-          <p class="approval">
-            This comment is awaiting approval
-          </p>
-          {% endif %}
-          {% if user.is_authenticated and comment.author == user %}
-          <button class="btn btn-edit" comment_id="{{ comment.id }}">
-            <i class="fa-regular fa-pen-to-square"></i>
-          </button>
-          <button class="btn btn-delete" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i>
-          </button>
-          {% endif %}
-        </div>
-        <!-- Our for loop ends here -->
-        {% endfor %}
-      </div>
-    </div>
+  <div class="row my-4 mx-2 comments-add">
     <!-- Creating New Comments -->
-    <div class="col-md-4 card mb-4 mt-3">
       <div class="card-body">
         {% if user.is_authenticated %}
-        <h3>Leave a comment:</h3>
+        <div class="form-title my-4">
+            <h1>Leave a Comment</h1>
+        </div>
         <p>Posting as: {{ user.username }}</p>
-        <form id="commentForm" method="post"
-          style="margin-top: 1.3em;">
+        <form id="commentForm" method="post">
           {{ comment_form | crispy }}
           {% csrf_token %}
           <button id="submitButton" type="submit"
-            class="btn btn-signup btn-lg">Submit</button>
+            class="btn btn-primary ">Send</button>
         </form>
         {% else %}
         <p>Log in to leave a comment</p>
         {% endif %}
       </div>
-    </div>
   </div>
-</div>
+</section>
 
 
 <!-- Modals -->
