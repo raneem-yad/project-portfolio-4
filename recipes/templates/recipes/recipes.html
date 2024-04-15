@@ -31,9 +31,11 @@
             <div class="col-md-7">
               <div class="card-body">
                 <h2 class="card-title">{{ recipe.name }}</h2>
-                    <p>
-                        {% if recipe.user.profile.photo %}
-                            <img src="{{ recipe.user.profile.photo.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+                    <p class="card-author">
+                        {% if recipe.user.profile.image.url %}
+                            <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
+                            <img src="{{ recipe.user.profile.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
+                            </a>
                         {% else %}
                             <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
                         {% endif %}
@@ -41,6 +43,7 @@
                     </p>
                     <span class="badge rounded-pill bg-success">{{recipe.meal_type}}</span>
                     <span class="badge rounded-pill bg-success">cook time : {{recipe.prep_time}} min</span>
+                    <span class="badge rounded-pill bg-success">{{recipe.get_difficulty_display}}</span>
                     <span class="badge rounded-pill bg-success">serves :{{recipe.serves}} people</span>
                 <p class="card-text py-3">{{recipe.description}}</p>
                 <p class="card-text">
