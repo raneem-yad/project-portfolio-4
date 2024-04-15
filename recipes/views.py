@@ -9,11 +9,11 @@ from django.views.generic import (
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Avg, Count
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import Recipe, MealType, Bookmark, Comment
+from .models import Recipe, MealType, Bookmark, Comment, Rating
 from .forms import RecipeForm, CommentForm
 
 
@@ -103,6 +103,8 @@ class RecipeDetail(FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = self.object
+
+        # Retrieve bookmarked for the recipe
         if self.request.user.is_authenticated:
             # Get the current user's bookmarks
             user_bookmarks = Bookmark.objects.filter(user=self.request.user)
@@ -112,9 +114,17 @@ class RecipeDetail(FormMixin, DetailView):
             ).exists()
         else:
             context["is_bookmarked"] = False
+
+        # Retrieve comments for the recipe
         context["comments"] = recipe.comments.order_by("-created_on")
         context["comment_count"] = context["comments"].count()
         context["comment_form"] = CommentForm
+
+        # Retrieve average rating for the recipe
+        rating_data = Rating.objects.filter(recipe=recipe).aggregate(Avg('rating'), Count('rating'))
+        context["average_rating"] = rating_data['rating__avg']
+        context["rating_count"] = rating_data['rating__count']
+        context["star_range"] = range(1, 6)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -224,3 +234,18 @@ def remove_bookmark(request, slug):
             )
     # Redirect back to the recipe detail page
     return redirect("recipe_detail", slug=slug)
+
+
+def rate_recipe(request, recipe_id):
+    recipe = Recipe.objects.get(id=recipe_id)
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.user = request.user
+            rating.recipe = recipe
+            rating.save()
+            return redirect('recipe_detail', slug=recipe.slug)
+    else:
+        form = RatingForm()
+    return render(request, 'recipe_details.html', {'rating_form': form, 'recipe': recipe})

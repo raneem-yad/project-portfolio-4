@@ -44,6 +44,18 @@
         <i class="fa-regular fa-comment"></i>
         <small>{{ comment_count }}</small>
       </div>
+      <div class="my-2 mx-4 tools">
+          {% if average_rating %}
+                {% for i in star_range %}
+                    {% if i <= average_rating %}
+                        <i class="fas fa-star"></i>  <!-- Filled star -->
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+          {% endif %}
+          <small>{{rating_count}} </small>
+      </div>
 <!--    rating -->
 <!--      <div class="my-2">-->
 <!--        <div class="w-100 float-left">-->

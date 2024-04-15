@@ -61,4 +61,36 @@ document.addEventListener('DOMContentLoaded', function() {
         deleteModal.show();
       });
     }
+
+
+
+//    rating a recipe
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', function(event) {
+            event.preventDefault();
+            const rating = this.getAttribute('data-rating');
+            const recipeId = // Get the recipe ID from the HTML or server-side context
+            rateRecipe(recipeId, rating);
+        });
+    });
+
+    function rateRecipe(recipeId, rating) {
+        // Send AJAX request to the server to save the rating
+        // Example using jQuery AJAX:
+        $.ajax({
+            type: 'POST',
+            url: '/rate_recipe/' + recipeId + '/',
+            data: {
+                'rating': rating,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                // Optionally update UI to reflect the new rating
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
 });

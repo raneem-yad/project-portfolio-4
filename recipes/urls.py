@@ -10,6 +10,7 @@ from .views import (
     remove_bookmark,
     comment_edit,
     comment_delete,
+    rate_recipe
 )
 
 urlpatterns = [
@@ -19,6 +20,7 @@ urlpatterns = [
     path("edit/<slug:slug>/", EditRecipe.as_view(), name="edit_recipe"),
     path("bookmark/<slug:slug>/", bookmark_recipe, name="bookmark_recipe"),
     path("remove-bookmark/<slug:slug>/", remove_bookmark, name="remove_bookmark"),
+    path("rate_recipe/<int:recipe_id>/", rate_recipe, name="rate_recipe"),
     path(
         "<slug:slug>/edit_comment/<int:comment_id>", comment_edit, name="comment_edit"
     ),
