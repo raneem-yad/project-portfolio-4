@@ -56,7 +56,9 @@
                 {% if bookmarked_recipes %}
                 <ul>
                        {% for recipe_name, recipe_slug in bookmarked_recipes %}
+                            {% if recipe_name is none%} <p>No bookmarked recipes.</p> {%else%}
                             <li><a href="{% url 'recipe_detail' recipe_slug %}">{{ recipe_name }}</a></li>
+                            {%endif%}
                         {% endfor %}
                         <hr>
                 </ul>

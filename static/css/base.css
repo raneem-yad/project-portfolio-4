@@ -310,6 +310,10 @@ img.logo {
     cursor: pointer;
 }
 
+.alert {
+    --bs-alert-bg: #dfe5e5;
+}
+
 /**Modals **/
 .social-modal-body div {
     display: inline;
