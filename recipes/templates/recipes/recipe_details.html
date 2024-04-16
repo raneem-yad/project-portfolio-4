@@ -120,62 +120,44 @@
 
 <section class="container">
     <!--Comments -->
-  <div class="row comments">
+    <div class=" comments">
     {% if comments %}
         {% for comment in comments %}
+        <div class="row">
         <!-- Media object -->
-        <div class="d-flex comment {% if not comment.approved and comment.author == user %}
-              faded{% elif not comment.approved %} d-none{% endif %}">
-          <!-- Image -->
-          <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
-          <img
-            src="{{comment.author.profile.image.url}}"
-            alt="{{comment.author}}"
-            class="me-3 rounded-circle"
-            style="width: 60px; height: 60px;"
-          />
-          </a>
-          <!-- Media body -->
-          <div>
-              <h5 class="fw-bold">
-                {{comment.author}}
-
-              </h5>
-              <small class="text-muted">Posted on  {{ comment.created_on }}</small>
-              <p id="comment-title{{ comment.id }}">
-                {{ comment.title }}
-              </p>
-              <p id="comment-body{{ comment.id }}">
-                {{ comment.body  }}
-              </p>
-              {% if not comment.approved and comment.author == user %}
-              <p class="approval">
-                This comment is awaiting approval
-              </p>
-              {% endif %}
-          </div>
-            <!-- Media body -->
-          <div class="ms-auto">
-            {% if user.is_authenticated and comment.author == user %}
-                <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i>
-                </button>
+            <div class=" d-flex comment {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %} d-none{% endif %}">
+              <!-- Image -->
+              <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
+                <img src="{{comment.author.profile.image.url}}"alt="{{comment.author}}"class="me-3 rounded-circle"style="width: 60px; height: 60px;"/>
+              </a>
+              <!-- Media body -->
+              <div class="media-body">
+                  <h5 class="fw-bold">{{comment.author}}</h5>
+                  <small class="text-muted">Posted on  {{ comment.created_on }}</small>
+                  <p id="comment-title{{ comment.id }}">{{ comment.title }}</p>
+                  <p id="comment-body{{ comment.id }}">{{ comment.body  }}</p>
+                  {% if not comment.approved and comment.author == user %}
+                    <p class="approval">This comment is awaiting approval</p>
+                  {% endif %}
+              </div>
+              <!--End Media body -->
+              <div class="ms-auto">
+                {% if user.is_authenticated and comment.author == user %}
+                    <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
                 {% endif %}
-          {% endfor %}
-          </div>
+              </div>
+            </div>
         </div>
-
-        <!-- Media object -->
-
+        {% endfor %}
+    </div>
     {% else %}
       <div class="form-title my-4">
                 <h1>Did you Try this Recipe?</h1>
       </div>
       <h5>Share your Experience with us</h5>
     {% endif %}
-    </div>
+
 
 
 <!--  Comments -->
@@ -213,12 +195,9 @@
       </div>
      <p class="text-center p-3"> Tell you friends about the Recipe</p>
       <div class="social-modal-body d-flex justify-content-center">
-
         {% post_to_facebook object_or_url "<i class='fa-brands fa-facebook m-3'></i>" %}
         {% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "<i class='fa-brands fa-square-twitter m-3'></i>" %}
         {% send_email object.title "Look at this recipe: {{object.name}}. Check it out!" object_or_url "<i class='fa-solid fa-envelope m-3'></i>" %}
-        {% copy_to_clipboard object_or_url "<i class='fa-solid fa-clipboard m-3'></i>" %}
-        {% add_copy_script %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
