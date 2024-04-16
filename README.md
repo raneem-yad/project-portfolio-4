@@ -133,20 +133,69 @@ In development, 'Chilanka' was identified by variable ``` --main-font```, whilst
 ![fonts](readme/font-type.png)  
 
 
-# project-portfolio-4
+# Project Planning  
+ 
+## Strategy Plane
 
-Project Objective:
-The objective of the project is to develop a comprehensive recipe website where users can discover, save, and share recipes. The website aims to provide a user-friendly platform for individuals interested in cooking to find a wide range of recipes and cooking difficulty levels. Additionally, the website will facilitate interaction and engagement among users through features such as commenting, rating, and sharing recipes.
+The focus of the website is on creating a user-centric platform that celebrates the rich culinary heritage of Oriental cuisine. Our key objectives include:
 
-Site User Goals:
-Discover Recipes: Users want to find new and interesting recipes to try out.
-Save and Organize Recipes: Users want to save their favorite recipes and organize them for easy access.
-Interact with Community: Users want to engage with other users by sharing their experiences, leaving comments, and rating recipes.
-Contribute Content: Users want to contribute their own recipes to the website and share them with others.
-Learn and Improve Cooking Skills: Users want to learn new cooking techniques, discover tips, and improve their culinary skills through the content provided on the website.
-Site Owner Goals:
-Provide Valuable Content: The site owner aims to curate and provide a diverse range of high-quality recipes to attract and retain users.
-Increase User Engagement: The site owner wants to foster a vibrant community where users actively interact with each other and contribute to the content.
-Grow User Base: The site owner aims to attract a large user base by offering a user-friendly and feature-rich platform for recipe enthusiasts.
-Generate Revenue: The site owner may have objectives related to generating revenue through advertising, sponsored content, premium features, or affiliate partnerships.
-Maintain and Improve Website: The site owner aims to regularly maintain and improve the website to ensure optimal performance, usability, and security.
+1- User Engagement: Prioritizing features that enhance user interaction and encourage community participation, such as recipe sharing, commenting, and rating.
+
+2- Authenticity: Curating a diverse collection of authentic recipes from the Middle East, Asia, and beyond, ensuring a genuine culinary experience for our users.
+
+3- Visual Identity: Establishing a distinctive visual identity through carefully selected colors, fonts, and imagery that reflect the essence of olives and Mediterranean cuisine.
+
+4- Accessibility: Designing a user-friendly interface that is accessible to all users, regardless of their device or abilities, to ensure an inclusive experience for everyone.
+
+5- Scalability: Building a robust and scalable platform capable of accommodating future growth and expansion, including the addition of new features and functionalities.
+
+### Site Goals
+
+1- Discover Recipes: Users want to find new and interesting recipes to try out.
+
+2- Save and Organize Recipes: Users want to save their favorite recipes and organize them for easy access.
+
+3- Interact with Community: Users want to engage with other users by sharing their experiences, leaving comments, and rating recipes.
+
+4- Contribute Content: Users want to contribute their own recipes to the website and share them with others.
+
+5- Learn and Improve Cooking Skills: Users want to learn new cooking techniques, discover tips, and improve their culinary skills through the content provided on the website.
+
+## Agile Methodologies - Project Management
+
+Zaitouna is my first project following Agile planning methods. I used my [Github Projects Board](https://github.com/users/raneem-yad/projects/4) to plan and document all of my work.
+
+### MoSCoW Prioritization
+
+I chose to follow the MoSCoW Prioritization method for Zaitouna, identifying and labeling:
+
+- **Must Haves**: the 'required', critical components of the project. Completing my 'Must Haves' helped me to reach the MVP (Minimum Viable Product) for this project early, allowing me to develop the project further than originally planned.
+  
+- **Should Haves**: the components that are valuable to the project but not absolutely 'vital' at the MVP stage. The 'Must Haves' must receive priority over the 'Should Haves'.
+- **Could Haves**: these are the features that are a 'bonus' to the project, it would be nice to have them in this phase, but only if the most important issues have been completed first and time allows.
+- **Won't Haves**: the features or components that either no longer fit the project's brief or are of very low priority for this release. 
+
+### Sprints
+
+With a tight deadline of 10 days to complete the project, I organized my work into four sprints. This rapid sprint approach allowed me to break down the project into manageable chunks and maintain focus on delivering key features and functionality.
+
+During each sprint, I divided my tasks into two main categories: Developer (Dev) Tasks and User Stories. These tasks were converted into issues and meticulously labeled on my project board. Every issue was tagged as either a user story or a bug, providing clear reference points for development tasks.
+
+Each user story was carefully crafted to include detailed information about its theme, epic, acceptance criteria, and associated tasks. This structured approach helped me stay organized and prioritize my work effectively.
+
+Furthermore, breaking down user stories into individual tasks enabled me to track progress and easily identify the next steps in the development process. This agile methodology proved invaluable in maximizing productivity and ensuring the timely completion of project milestones.
+
+
+| Sprint No. | Sprint Content | Start/Finish Dates |
+|------------|----------------|--------------------|
+| #1 | Setup/Recipe Features | 08/04/24  -> 11/04/24  |
+| #2 | Comments/ Sharing | 11/04/24  -> 13/04/24  |
+| #3 | Rating/ Profiles | 13/04/24 -> 15/04/24 |
+| #4 | Testing/Documentation | 15/04/24 -> 17/04/24 |
+
+
+![user-story-example](/readme/example-user-story.png)
+
+## User Stories
+
+User stories and features recorded and managed on [GitHub Projects](<https://github.com/users/raneem-yad/projects/4>)
