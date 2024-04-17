@@ -561,3 +561,323 @@ This is a list of the Python / Django libraries used in this project.
 * [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python.
 * [text-unidecode](https://pypi.org/project/text-unidecode/) - The most basic Text::Unidecode port for Python.
 
+
+# Testing
+
+The Zaitouna site has been tested rigorously throughout the development process. This section will provide documentation on the tests carried out.
+
+## User Story Tests
+
+### 1. **As a** User,**I want** to be able to create a new account with my email address and password, **So that** I can access the website's features.
+
+
+#### Acceptance Criteria:
+1. The user should be able to navigate to the sign-up page from the homepage.
+2. The sign-up page should contain input fields for the user's email address and password.
+3. The user should receive a confirmation message upon successful sign-up.
+
+#### Tasks:
+- [x] Implement the sign-up page UI.
+- [x] Set up the backend to handle user registration.
+- [x] Validate user input for email address and password.
+- [x] Show a confirmation message to the user upon successful registration.
+- [x] Test the sign-up process to ensure functionality and user experience.
+
+### 2. **As a** User,**I want** to be able to log into my account securely using my email address and password,  **So that** I can access the website's features.
+
+#### Acceptance Criteria:
+1. The user should be able to navigate to the login page from the homepage.
+2. The login page should contain input fields for the user's email address and password.
+3. The user should receive an error message if they enter incorrect login credentials.
+4. Upon successful login, the user should be redirected to the HomePage.
+
+#### Tasks:
+- [x] Implement the login page UI.
+- [x] Set up the backend to handle user authentication.
+- [x] Validate user input for email address and password.
+- [x] Provide appropriate error messages for invalid login attempts.
+- [x] Redirect the user to HomePage upon successful login.
+- [x] Test the login process to ensure functionality and security.
+
+
+### 3. **As a** User, **I want** to see my recipes in my profile, **So that** I can access them quickly and easily.
+
+#### Acceptance Criteria:
+
+1. The user should have a "My Recipes" section or tab in their profile page.
+2. The "My Recipes" section should display a list of recipes that the user has added or saved.
+3. Each recipe in the "My Recipes" section should include basic information such as the recipe title, image, and a brief description.
+4. The user should be able to click on a recipe to view its full details.
+5. If the user has not added or saved any recipes yet, the "My Recipes" section should display a message indicating that there are no recipes to show.
+
+
+#### Tasks:
+- [x] Add a "My Recipes" section or tab to the user's profile page UI.
+- [x] Implement backend functionality to fetch and display the user's recipes.
+- [x] Design the layout for displaying recipe information within the "My Recipes" section.
+- [x] Ensure that clicking on a recipe redirects the user to the recipe's detailed view.
+- [x] Handle cases where the user has no saved or added recipes.
+- [x] Test the "My Recipes" section to ensure it accurately displays the user's recipes and provides a smooth user experience.
+
+
+
+### 4. **As a** User, **I want** to be able to browse recipes and view detailed information about each recipe, **So that** I can discover new recipes and decide which ones to try.
+
+
+#### Acceptance Criteria:
+1. The website should have a dedicated page or section for browsing recipes.
+2. Each recipe should be displayed with basic information such as the recipe title, image, and a brief description.
+3. Users should be able to click on a recipe to view its detailed information.
+4. The detailed view of a recipe should include ingredients, instructions, cooking time, difficulty level, and any other relevant details.
+5. Users should have the option to save or bookmark recipes for later access.
+6. The browsing experience should be user-friendly and intuitive, allowing users to easily navigate between different recipes.
+
+#### Tasks:
+- [x] Create a dedicated page or section for browsing recipes.
+- [x] Design the layout for displaying multiple recipes, including titles, images, and descriptions.
+- [x] Implement functionality to fetch and display recipes from a database or external source.
+- [x] Design the layout for the detailed view of a recipe, including all relevant information.
+- [x] Implement functionality to save or bookmark recipes for later access.
+- [x]  Test the recipe browsing and detailed view functionalities to ensure they meet user expectations and provide a seamless experience.
+
+### 5. **As a** User,**I want** to be able to search for specific recipes based on keywords or filters, **So that** I can quickly find recipes that match my requirements.
+
+#### Acceptance Criteria:
+1. The website should have a search bar prominently displayed on the homepage or recipe browsing page.
+2. Users should be able to enter keywords or phrases into the search bar to find recipes related to their query.
+3. The search functionality should support filtering recipes based on criteria such as ingredients, cuisine, dietary restrictions, cooking time, and difficulty level.
+4. Users should be able to refine their search results using multiple filters simultaneously.
+5. Search results should be displayed in a clear and organized manner, showing relevant information such as recipe titles, images, and descriptions.
+6. Users should be able to click on a search result to view detailed information about the corresponding recipe.
+
+
+#### Tasks:
+
+- [x] Add a search bar to the homepage or recipe browsing page UI.
+- [x] Implement backend functionality to handle search queries and filtering.
+- [x] Design the layout for displaying search results, including relevant recipe information.
+- [x] Implement filtering options for refining search results based on various criteria.
+- [x] Test the search functionality with different search queries and filters to ensure accuracy and efficiency.
+
+
+### 6. **As a** User ,**I want** to save or bookmark recipes, **So that** I can easily access them later when needed.
+
+#### Acceptance Criteria:
+
+1. Users should have the option to save or bookmark recipes from the recipe details page.
+2. There should be a visible and intuitive button or icon for saving recipes.
+3. Upon clicking the save or bookmark button, the recipe should be added to the user's saved recipe collection.
+4. Users should be able to access their saved recipes from their profile page or a dedicated "Saved Recipes" section.
+5. The saved recipes should be displayed with basic information such as the recipe title, image, and a brief description.
+6. Users should be able to remove recipes from their saved collection if they no longer wish to keep them.
+
+#### Tasks:
+- [x] Add a save or bookmark button to the recipe details page UI.
+- [x] Implement backend functionality to handle saving and retrieving saved recipes.
+- [x] Design the layout for displaying saved recipes on the user's profile page or a dedicated section.
+- [x] Implement functionality to add and remove recipes from the user's saved collection.
+- [x] Test the save and retrieve functionalities to ensure saved recipes are stored and displayed accurately.
+- [x] Ensure that saved recipes are accessible and manageable for users across different devices and sessions.
+
+### 7. **As a** user,**I want** to be able to rate recipes that I've tried and see ratings from other users, **So that** can make informed decisions about which recipes to try.
+
+#### Acceptance Criteria:
+1. Users should have the option to rate recipes after trying them from the recipe details page.
+2. The rating system should use a scale (e.g., stars) to allow users to indicate their satisfaction with the recipe.
+3. The average rating for each recipe should be displayed prominently on the recipe details page.
+4. Users should be able to see individual ratings and reviews from other users on the recipe details page.
+5. Ratings and reviews should be displayed in a clear and organized manner, showing the user's name, rating, and review text.
+6. Users should be able to sort recipes based on ratings to find the highest-rated recipes easily.
+
+#### Tasks:
+- [x] Add a rating system (e.g., stars) to the recipe details page UI.
+- [x] Implement backend functionality to handle user ratings and reviews for recipes.
+- [x] Design the layout for displaying average ratings and individual ratings/reviews on the recipe details page.
+- [x] Implement functionality to calculate and display the average rating for each recipe.
+- [x] Test the rating and review functionalities to ensure accuracy and reliability.
+
+### 8. **As a** user ,**I want** to be able to review recipes I've tried by leaving comments and see reviews from other users, **So that** I can share my experiences and provide feedback.
+
+#### Acceptance Criteria:
+1. Users should have the option to leave comments or reviews after trying a recipe from the recipe details page.
+2. The comment section should allow users to write and submit their feedback about the recipe.
+3. Comments left by users should be displayed below the recipe details, showing the user's name, timestamp, and comment text.
+4. Users should be able to see all comments and reviews from other users on the recipe details page.
+5. The comment section should be interactive, allowing users to like, reply to, or report comments if necessary.
+6. Comments and reviews should be displayed in a clear and organized manner, facilitating easy reading and navigation.
+
+
+#### Tasks:
+- [x]  Add a comment section to the recipe details page UI.
+- [x] Implement backend functionality to handle user comments and reviews for recipes.
+- [x] Design the layout for displaying user comments and reviews, including user names, timestamps, and comment text.
+- [x] Implement functionality to submit, display, and manage user comments.
+- [x] Test the comment and review functionalities to ensure usability and reliability.
+
+### 9. **As a** User, **I want** to be able to share recipes with friends and family through social media or email, **So that**  I can easily recommend delicious recipes and spread culinary inspiration.
+
+#### Acceptance Criteria:
+1. Users should have the option to share recipes via social media platforms (e.g., Facebook, Twitter, Pinterest) or email.
+2. The sharing options should be easily accessible from the recipe details page.
+3. Clicking on a social media sharing button should open a new window or dialog box with pre-filled information (e.g., recipe title, image, and link).
+4. Users should have the option to customize the shared message before posting it on social media or sending it via email.
+5. The shared content should include a clickable link that directs recipients back to the recipe details page.
+6. Users should receive confirmation after successfully sharing a recipe.
+
+
+#### Tasks:
+- [x] Add social media sharing buttons to the recipe details page UI.
+- [x] Implement backend functionality to generate shareable content for social media platforms.
+- [x] Design the layout for the sharing dialog box, including pre-filled information and customizable message fields.
+- [x] Implement functionality to open the sharing dialog box upon clicking on a social media sharing button.
+- [x] Test the social media sharing functionality to ensure compatibility and user-friendliness across different platforms.
+
+### 10. **As a** User, **I want** to be able to remove recipes from my recipes or saved recipes, **So that** I can manage my saved recipes and keep them up-to-date with my preferences.
+
+#### Acceptance Criteria:
+1. Users should have the option to remove recipes from their recipes or saved recipes.
+2. There should be a visible and intuitive button or icon for removing recipes.
+3. There should be a question to check if there user affirms deleting the selected recipe.
+4. Upon clicking the remove button, the recipe should be removed from the user's saved collection.
+5. Users should receive confirmation after successfully removing a recipe.
+
+#### Tasks:
+
+- [x] Add a remove button or icon to the My Recipes list or saved recipe list.
+- [x] Implement backend functionality to handle the removal of recipes from the user's saved collection.
+- [x] Design the layout for the confirmation dialog box that appears after removing a recipe.
+- [x] Implement functionality to confirm the removal action and update the saved recipe collection accordingly.
+- [x] Test the recipe removal functionality to ensure accuracy and user-friendliness.
+
+### 11. **As a** User, **I want** to be able to edit my recipes, **So that** I can update them with any changes, improvements, or corrections.
+
+#### Acceptance Criteria:
+
+1. Users should have the option to edit their recipes from the recipe details page.
+2. The edit option should be accessible only to the user who originally added the recipe.
+3. Clicking on the edit option should redirect the user to a page or form where they can modify the recipe details.
+4. Users should be able to update various aspects of the recipe, including ingredients, instructions, cooking time, and images.
+5. Upon submitting the edits, the changes should be reflected immediately in the updated recipe.
+6. Users should receive confirmation after successfully editing a recipe.
+
+#### Tasks:
+
+- [x] Add an edit option or button to the recipe details page UI for the recipe owner.
+- [x] Implement backend functionality to handle recipe editing requests and updates.
+- [x] Design the layout for the recipe editing page or form, including input fields for modifying recipe details.
+- [x] Implement functionality to retrieve the current recipe details and pre-fill them in the editing form.
+- [x] Test the recipe editing functionality to ensure accuracy and reliability.
+
+### 12. **As a** User, **I want** to be able to edit or delete my comments on recipes, **So that** I can correct mistakes, update information, or remove inappropriate content as needed.
+
+#### Acceptance Criteria:
+
+1. Users should have the option to edit or delete their comments from the recipe details page.
+2. The edit and delete options should be accessible only to the user who originally posted the comment.
+3. Clicking on the edit option should allow the user to modify the text of their comment.
+4. Clicking on the delete option should prompt the user to confirm the deletion of their comment.
+5. After editing or deleting a comment, the changes should be reflected immediately.
+6. Users should receive confirmation after successfully editing or deleting a comment
+
+
+#### Tasks:
+- [x] Add edit and delete options or buttons to each user's comments on the recipe details page UI.
+- [x] Implement backend functionality to handle comment editing and deletion requests.
+- [x] Design the layout for the comment editing interface, allowing users to modify the text of their comments.
+- [x] Implement functionality to confirm the deletion of a comment and remove it from the database.
+- [x] Test the comment editing and deletion functionality to ensure accuracy and reliability.
+- [x] Provide feedback to users upon successfully editing or deleting a comment to confirm that the action was completed successfully.
+
+
+### 14. **As a** User ,**I want** to be able to update my profile information, **So that** my profile reflects accurate and up-to-date information.
+
+#### Acceptance Criteria:
+1. The user should have access to a profile settings page to update their information.
+2. On the profile settings page, there should be input fields or options to update the user's name, email address, and profile picture.
+3. The user should be able to save their changes after updating their profile information.
+4. Changes to the user's profile information should be reflected immediately throughout the website.
+5. If the user changes their email address, they should receive a confirmation email to verify the change.
+
+
+#### Tasks:
+
+- [x] Create a profile settings page UI with input fields for name, email address, and profile picture.
+- [x] Implement backend functionality to handle profile information updates.
+- [x] Design the page Layout.
+- [x] Test the profile information update process to ensure accuracy and user satisfaction.
+
+
+### 15. **As a** user ,**I want** to see a selection of featured recipes displayed on the home page, **So that** I can quickly discover new and popular recipes.
+
+#### Acceptance Criteria:
+1. On the home page, there should be a section dedicated to displaying recipes.
+2. The recipes section should showcase a visually appealing layout with images, titles, and brief descriptions.
+3. Users should be able to click on a recipe Image to view the full details of the recipe.
+4. The selection of featured recipes should be dynamic and regularly updated based on popularity, user preferences, or other relevant criteria.
+
+#### Tasks:
+- [ ]Design a layout for the featured recipes section on the home page.
+- [ ]Implement functionality to retrieve a selection of featured recipes from the database.
+- [ ]Display the retrieved recipes on the home page, including images, titles, and brief descriptions.
+- [ ]Ensure that clicking on a recipe card redirects the user to the full recipe details page.
+
+
+### 16. **As a** User,**I want** to be able to view all recipes belonging to a specific Meal Type, **So that** I can explore recipes based on my preferences.
+
+#### Acceptance Criteria:
+1. On the recipe browsing page, there should be a list of Meal types available for selection.
+2. When a user clicks on a meal type, they should be directed to a page displaying all recipes belonging to that category.
+3. The category page should include a clear title indicating the selected category.
+4. Each recipe card displayed on the category page should contain essential details such as title, image, and brief description.
+5. Users should be able to click on a recipe card to view the full details of the recipe.
+
+#### Tasks:
+- [x] Design a user interface element for displaying meal types on the recipe browsing page.
+- [x] Implement functionality to retrieve a list of available meal types from the database.
+- [x] Display the list of meal types as clickable links.
+- [x] Design a separate page template for displaying recipes by meal type.
+- [x] Implement logic to retrieve and display all recipes belonging to a selected meal type.
+- [x] Ensure that the meal type page displays a clear title indicating the selected meal type.
+- [x] Design recipe cards to be displayed on the category page, including title, image, and brief description
+- [x]  Implement functionality to redirect users to the full recipe details page when clicking on a recipe card.
+- [x] Test the category navigation functionality to ensure a seamless user experience.
+- [x] Deploy the updated pages with category navigation to the live website.
+
+### 17. **As a** User, **I want** to be able to edit my profile by uploading a profile picture and adding a bio, **So that** I can personalize my account and share information about myself with others.
+
+#### Acceptance Criteria:
+1. Users should have the option to edit their profile information, including uploading a profile picture and adding/editing a bio.
+2. The profile editing page should include fields for uploading a profile picture and entering/editing a bio.
+3. Users should be able to upload a profile picture by selecting an image file from their device.
+4. The uploaded profile picture should be displayed on the profile page and other relevant sections of the website.
+5. Users should be able to enter/edit a bio in a text field provided on the profile editing page.
+6. Changes made to the profile information should be saved and reflected in the user's profile immediately.
+
+
+#### Tasks:
+- [ ] Design a user interface for the profile editing page, including fields for uploading a profile picture and entering/editing a bio.
+- [ ] Implement functionality to retrieve and display the user's current profile picture on the editing page.
+- [ ] Implement file upload functionality to allow users to select and upload a profile picture from their device.
+- [ ] Validate uploaded image files to ensure they meet specified criteria (e.g., file type, size limits).
+- [ ] Implement functionality to store the uploaded profile picture in a secure location (e.g., server or cloud storage).
+- [ ] Design and implement a text field for entering/editing the user's bio.
+- [ ] Ensure that changes made to the profile information are saved and updated in the database.
+- [ ] Update the user's profile page to display the uploaded profile picture and bio.
+- [ ] Test the profile editing functionality to ensure that users can successfully upload a profile picture and add/edit their bio.
+
+### 17. **As a** User, **I want**  to be able to view the full profile of another user by clicking on their profile picture, **So that** I can see the recipes they have added without accessing their bookmarked recipes.
+
+#### Acceptance Criteria:
+1. Users should be able to click on the profile picture of another user to view their full profile details.
+2. The profile page should display information about the user, including their username, profile picture, bio, and any other relevant details.
+3. The profile page should also showcase the recipes added by the user, excluding any bookmarked recipes.
+4. Each recipe displayed on the profile page should contain essential details such as title,
+5. Users should be able to click on a recipe card to view the full details of the recipe.
+
+
+#### Tasks:
+- [x]  Implement functionality to retrieve and display the full profile details of a user when their profile picture is clicked.
+- [x] Retrieve and display user information such as username, profile picture, bio, and any other relevant details on the profile page.
+- [x] Implement logic to retrieve and display the recipes added by the user, excluding bookmarked recipes.
+- [x] Ensure that clicking on a recipe card redirects the user to the full recipe details page.
+- [x] Test the profile page functionality to verify that users can view the full profile details and recipes of other users.
