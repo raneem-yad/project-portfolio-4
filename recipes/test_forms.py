@@ -1,21 +1,25 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
-from .forms import RecipeForm
+from django.urls import reverse
+
+from .forms import RecipeForm, CommentForm
 from .models import MealType, Recipe
 
 
 class RecipeFormTestCase(TestCase):
     def setUp(self):
-        # Create a MealType instance for testing
-        self.meal_type = MealType.objects.create(title="Breakfast")
+        self.user = User.objects.create_user(username='test', password='5p.WS%s8X')
+        self.client.login(username='test', password='5p.WS%s8X')
+        self.meal_type = MealType.objects.create(title='Breakfast')
+        self.url = reverse('add_recipe')
 
     def test_valid_form(self):
-        # Todo : dummy image is the problem
-        # Create a dummy image file
-        # image_content = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90\x8d6\x00\x00\x00\x0bIDAT\x08\xd7c\x00\x01\x00\x00\x05\x00\x01\r\n\x00\x00\x00\x00IEND\xaeB`\x82"
-        image_content = bytearray([1, 2, 3])
+        with open("./readme/add-recipe.png", "rb") as f:
+            image_content = f.read()
+
         image = SimpleUploadedFile(
-            "test_image.png", image_content, content_type="image/png"
+            "./readme/add-recipe.png", image_content, content_type="image/jpeg"
         )
 
         form_data = {
@@ -23,7 +27,7 @@ class RecipeFormTestCase(TestCase):
             "description": "This is a test recipe description.",
             "instructions": "These are the test recipe instructions.",
             "ingredients": "Ingredient 1\nIngredient 2\nIngredient 3",
-            "image": image,
+            "image": image_content,
             "image_alt": "Test Recipe Image",
             "meal_type": self.meal_type.pk,
             "difficulty": 0,
@@ -32,9 +36,8 @@ class RecipeFormTestCase(TestCase):
             "status": 0,
         }
 
-        form = RecipeForm(data=form_data, files={"image": image})
-        print(form.errors)
 
+        form = RecipeForm(data=form_data, files={"image": image})
         self.assertTrue(form.is_valid())
 
     def test_invalid_form(self):
@@ -48,5 +51,22 @@ class RecipeFormTestCase(TestCase):
         self.assertTrue(form.errors["image_alt"])
         self.assertTrue(form.errors["meal_type"])
         self.assertTrue(form.errors["difficulty"])
-        self.assertTrue(form.errors["cooking_time"])
+        self.assertTrue(form.errors["prep_time"])
         self.assertTrue(form.errors["serves"])
+
+
+class CommentFormTestCase(TestCase):
+    def test_comment_form_valid(self):
+        form_data = {
+            "title": "Test Comment",
+            "body": "This is a test comment body.",
+        }
+        form = CommentForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_comment_form_invalid(self):
+        form_data = {
+            # Missing required fields
+        }
+        form = CommentForm(data=form_data)
+        self.assertFalse(form.is_valid())

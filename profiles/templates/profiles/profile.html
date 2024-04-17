@@ -9,7 +9,7 @@
                     {% if profile.image.url is not none %}
                     <img src="{{profile.image.url}}" alt="{{profile.user.username}}'s image ">
                     {% else%}
-                    <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" alt="Default Profile Photo">
+                    <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" style="width: 7rem;height: auto;" alt="Default Profile Photo">
                     {% endif %}
                 </div>
                 <div class="col-12 col-sm-4">
@@ -43,12 +43,15 @@
                 <div class="form-title text-center m-3 align-items-center justify-content-center">
                     <h2>Added Recipes</h2>
                 </div>
-
+                {% if profile.user.recipe_owner.all %}
                 {% for recipe in profile.user.recipe_owner.all %}
                 <a href="{%url 'recipe_detail' recipe.slug %}"><h3>{{recipe.name}}</h3></a>
                 {{recipe.posted_date}}
                 <hr>
                 {% endfor %}
+                {% else %}
+                <p>You haven't added a Recipe yet!</p>
+                {% endif %}
             </div>
             {% if request.user == profile.user %}
             <div class="profile-bookmarks">
