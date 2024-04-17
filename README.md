@@ -423,33 +423,26 @@ By combining keyword search with meal type filtering, Zaitouna Recipes offers us
 
 ![Search Recipes](readme/search.png)
 
-
-### My Favourites
-
-The my favourites page is a template which is only accessible via the navigation menu to users who are logged in. The purpose of the my favourites page is to display a list of the recipes on the site which have been liked by the user. This is so the user can use the like recipe functionality as a way of storing recipes to view at a later date, almost like putting a bookmark in a digital cookbook. Users can use this feature to keep their favourite recipes in one easy location without having to search for them manually on the all recipes page or home page.
-
-![My Favourites](readme/my-favourites.png)
-
 #### Profiles
 
 The profile page on the Zaitouna Recipes website serves as a personalized hub for each user, allowing them to manage their account, showcase their contributions, and connect with other members of the community. Here's an overview of the key features and components of the profile page:
 
 1- Profile Picture and Username: The top section of the profile page displays the user's profile picture, providing a visual representation of their identity on the website. Next to the profile picture, the user's username is prominently displayed, allowing other users to easily identify and connect with them.
 
-2- Bio: Beside the profile picture and username, users have the option to write a bio to share more about themselves with the community. This section allows users to express their interests, culinary preferences, and any other information they wish to share.
+2- Bio: Besides the profile picture and username, users have the option to write a bio to share more about themselves with the community. This section allows users to express their interests, culinary preferences, and any other information they wish to share.
 
-3- User Contributions: The profile page showcases the user's contributions to the website, including the recipes they have added. Users can browse through their own recipes and see how they have contributed to the community.
+3- User Contributions: The profile page showcases the user's contributions to the website, including the recipes they have added. Users can browse through their recipes and see how they have contributed to the community.
 
-4- Edit Profile: Users have the ability to edit their profile information directly from the profile page. This includes updating their profile picture and editing their bio.
+4- Edit Profile: Users can edit their profile information directly from the profile page. This includes updating their profile picture and editing their bio.
 
 5- Bookmarked Recipes: This page is also displaying the recipes they have bookmarked for future reference. This allows users to easily access their favorite recipes from their profile page.
 
 ![Search Recipes](readme/myprofile.png)
 
 
-#### Delete Recipe
+#### Delete / Edit Recipe
 
-A user can delete their recipe easily from the my recipe page. If a user clicks the delete button on a recipe card the card content is hidden and a delete confirmation is displayed seeking confirmation from the user for recipe deletion. The user is also warned that the process cannot be undone. The user then has the option to cancel the delete by clicking the cancel button, or to confirm recipe deletion by clicking the delete button. The delete button is purposefully coloured red for warning. If the user clicks the cancel button the card content is returned to normal. If the user clicks the delete button the receipe is deleted from the database and the page is refreshed showing the recipe removed from the list.
+A user can delete their recipe easily from the My Recipe page. If a user clicks the delete button on a recipe card the card content is hidden and a delete confirmation is displayed seeking confirmation from the user for recipe deletion. The user is also warned that the process cannot be undone. The user then has the option to cancel the delete by clicking the cancel button or to confirm recipe deletion by clicking the delete button. The delete button is purposefully coloured red for warning. If the user clicks the cancel button the card content is returned to normal. If the user clicks the delete button the recipe is deleted from the database and the page is refreshed showing the recipe removed from the list.
 
 ![My Recipes Delete](readme/my-recipes-delete.png)
 
@@ -469,4 +462,102 @@ The 404 page is triggered when a user navigates to a site URL which doesn't exis
 ![404 Page](readme/404-page.png)
 
 
+## Future Features
+
+I believe the Zaitouna site has a lot of potential for expansion in the future. The basic functionality is there for the MVP, but there are many features I would like to add in the future.
+
+
+### User Change Password
+
+Adding this option for users who forget or want to change their password. Currently, a user has no way to retrieve their password/profile if they forget their login details. This could result in the user losing access to their profile and recipes. This is a big problem and could lead to users abandoning the site in the future. Hence this feature is a priority moving forward.
+
+
+
+### Sign Up Email Confirmation
+
+Another future feature I would like to implement relating to authorization is a user sign-up email confirmation. I would like a user sign-up form submission to trigger an automated email into the user inbox prompting them to confirm their email address. This would help to prevent spam profiles. Users who sign up but don't confirm their email can still view the site but have limited access to site functionality such as posting and commenting.
+
+
+### Advanced Search Recipes
+
+Expand the search functionality to include more advanced filters, such as dietary preferences (e.g., vegetarian, vegan, gluten-free), cooking time, difficulty level, and ingredient exclusions. This would allow users to find recipes that better match their specific needs and preferences.
+
+### Interactive Cooking Guides
+
+Introduce interactive cooking guides or step-by-step tutorials for select recipes, complete with instructional videos, tips, and techniques to help users master the cooking process and achieve professional results.
+
+### Meal Planning Tools
+
+Integrate meal planning tools that enable users to plan their meals for the week, generate shopping lists based on selected recipes, and track their cooking progress.
+
+### Localization Support
+
+Offer support for multiple languages and regional cuisines to cater to a diverse audience of users from different cultural backgrounds and geographic regions.
+
+# Technologies Used
+
+## Languages
+
+* [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML) - Provides the basic content and structure for the site.
+* [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) - Provides the styling for the site.
+* [Python](https://www.python.org/) - Provides the functionality for the site.
+* [JavaScript](https://www.javascript.com/) - Provides interactivity and front-end functionality for the site.
+* [Git](https://git-scm.com/) - Provides the version control system for the site.
+
+## Frameworks
+
+* [Bootstrap](https://getbootstrap.com/) - A front-end framework for rapidly building websites.
+* [Django](https://www.djangoproject.com/) - A high-level Python web framework.
+
+
+
+## Software
+
+* [Balsamiq](https://balsamiq.com/) - An online cloud-based software used for creating the site wireframes.
+* [GitHub](https://github.com/) - An internet hosting service used for version control. Used to host the Zaitouna repository and for the project board used for project management and user stories.
+* [Pycharm](https://www.jetbrains.com/pycharm/) - The Python IDE for data science and web development.
+* [Heroku](https://dashboard.heroku.com/) - A cloud platform used to host the Zaitouna full-stack application.
+* [CI Database Maker](https://dbs.ci-dbs.net/manage/rTakZeqXDXBar2aq/) - A free PostgreSQL database system supported by code institute used for the application database.
+* [Cloudinary](https://cloudinary.com/?&utm_campaign=1329&utm_content=instapagelogocta-selfservetest) - A cloud-based video and image management platform used to store the site images.
+* [Slack](https://slack.com/intl/en-gb/) - An online instant messaging program used for site feedback and guidance from the [Code Institute](https://codeinstitute.net/) community.
+* [App Diagrams](https://app.diagrams.net/) - An online diagram software used for the database schemas.
+* [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - A set of web developer tools built directly into the chrome browser. Used for responsiveness tests and further testing.
+* [Google Fonts](https://fonts.google.com/) - A web based font service by Google used to supply the site typography.
+* [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - An open source automated testing tool used for site tests.
+* [Responsive Design Checker](https://responsivedesignchecker.com/) - An online testing tool used for responsive site testing.
+* [Am I Responsive](https://ui.dev/amiresponsive) - An online testing tool used for responsive site testing.
+* [Wave Web Accessibility Evaluation Tool](https://wave.webaim.org/) - An online suite of evaluation tools use to test the site for accessibility.
+
+
+
+## Libraries
+
+This is a list of the Python / Django libraries used in this project.
+
+* [asgiref](https://github.com/django/asgiref) - A standard Python library to allows for asynchronous web apps and servers to communicate with each other. 
+* [binaryornot](https://pypi.org/project/binaryornot/) - An ultra-lightweight Python package to guess whether a file is binary or text.
+* [chardet](https://pypi.org/project/chardet/) - A universal encoding detector for Python3.
+* [click](https://click.palletsprojects.com/en/8.1.x/) - A Python package for creating beautiful command line interfaces in a composable way with as little code as possible.
+* [cloudinary](https://pypi.org/project/cloudinary/) - A Python package allowing integration between the application and Cloudinary. 
+* [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/) - A Python package used to create projects from project templates.
+* [dj-database-url](https://pypi.org/project/dj-database-url/) - A Django utility to utilise the DATABASE_URL environment variable to configure the Django application. Used with PostgreSQL.
+* [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/) - A Django package that facilitates integration with Cloudinary storage.
+* [Django](https://www.djangoproject.com/) - A python package for the Django framework.
+* [django-active-link](https://pypi.org/project/django-active-link/) - A Django package used to highlight an active link in the site navigation bars.
+* [django-allauth](https://django-allauth.readthedocs.io/en/latest/) - An integrated set of Django applications addressing user authentication, registration and account management.
+* [django-browser-reload](https://github.com/adamchainz/django-browser-reload) - A Django package to automatically refresh the browser during development.
+* [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) - A Django package that provides tags and filters to control the rendering behaviour of Django forms.
+* [django-summernote](https://pypi.org/project/django-summernote/) - A Django package to allow for the embedding of the summernote text editor into Django.
+* [django-tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html) - A Django package to allow for the easy integration of the Tailwind CSS utility framework with Django.
+* [gunicorn](https://gunicorn.org/) - A Python WSGI HTTP Server for UNIX.
+* [jinja2-time](https://pypi.org/project/jinja2-time/) - A Jinja2 Python extension for dates and times.
+* [oauthlib](https://github.com/oauthlib/oauthlib) - A generic, spec-compliant, thorough implementation of the OAuth request-signing logic for Python 3.6+.
+* [psycopg2](https://pypi.org/project/psycopg2/) - A PostgreSQL database adapter for Python.
+* [PyJWT](https://pyjwt.readthedocs.io/en/latest/) - A Python library that allows for encoding and decoding of JSON Web Tokens (JWT).
+* [python-slugify](https://pypi.org/project/python-slugify/) - A Python application that generates slug fields from unicode strings.
+* [python3-openid](https://pypi.org/project/python3-openid/) - A set of Python packages to support use of the OpenID decentralized identity system.
+* [pytz](https://pypi.org/project/pytz/) - A Python package for world timezone definitions, modern and historical.
+* [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) - A Python package for OAuthlib authentication support for Requests.
+* [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python.
+* [text-unidecode](https://pypi.org/project/text-unidecode/) - The most basic Text::Unidecode port for Python.
 
