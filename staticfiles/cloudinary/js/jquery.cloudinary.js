@@ -1,0 +1,1 @@
+/workspace/.pyenv_mirror/user/current/lib/python3.12/site-packages/cloudinary/static/cloudinary/js/jquery.cloudinary.js
