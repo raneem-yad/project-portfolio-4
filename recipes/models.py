@@ -96,4 +96,4 @@ class Rating(models.Model):
         average_rating = cls.objects.filter(recipe_id=recipe_id).aggregate(
             Avg("rating")
         )["rating__avg"]
-        return average_rating if average_rating is not None else 0
+        return average_rating or 0

@@ -17,6 +17,8 @@ from django.http import HttpResponseRedirect
 from .models import Recipe, MealType, Bookmark, Comment, Rating
 from .forms import RecipeForm, CommentForm
 
+# Show 10 recipes per page
+MAX_RECORDS = 6
 
 # Create your views here.
 def home_recipe_view(request):
@@ -24,7 +26,7 @@ def home_recipe_view(request):
     recipe_list = Recipe.objects.annotate(average_rating=Avg("ratings__rating"))
 
     # Pagination
-    paginator = Paginator(recipe_list, 6)  # Show 10 recipes per page
+    paginator = Paginator(recipe_list, MAX_RECORDS)  
     page_number = request.GET.get("page")
     try:
         recipe_list = paginator.page(page_number)
@@ -276,3 +278,7 @@ def rate_recipe(request, recipe_id):
         return redirect("recipe_detail", slug=recipe.slug)
     else:
         return redirect("recipe_detail", slug=recipe.slug)
+
+# 404 View
+def custom_404(request, exception):
+    return render(request, "404.html")
