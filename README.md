@@ -865,7 +865,7 @@ The Zaitouna site has been tested rigorously throughout the development process.
 - [ ] Update the user's profile page to display the uploaded profile picture and bio.
 - [ ] Test the profile editing functionality to ensure that users can successfully upload a profile picture and add/edit their bio.
 
-### 17. **As a** User, **I want**  to be able to view the full profile of another user by clicking on their profile picture, **So that** I can see the recipes they have added without accessing their bookmarked recipes.
+### 18. **As a** User, **I want**  to be able to view the full profile of another user by clicking on their profile picture, **So that** I can see the recipes they have added without accessing their bookmarked recipes.
 
 #### Acceptance Criteria:
 1. Users should be able to click on the profile picture of another user to view their full profile details.
@@ -881,3 +881,225 @@ The Zaitouna site has been tested rigorously throughout the development process.
 - [x] Implement logic to retrieve and display the recipes added by the user, excluding bookmarked recipes.
 - [x] Ensure that clicking on a recipe card redirects the user to the full recipe details page.
 - [x] Test the profile page functionality to verify that users can view the full profile details and recipes of other users.
+
+
+
+## Validator Tests
+
+### W3C (HTML)
+
+When the Zaitouna site was first tested with the [W3C HTML Markup Validation Service](https://validator.w3.org/), it showed one warning.
+
+![HTML Validation Test](readme/html-validator.png)
+
+
+
+### W3C (CSS)
+
+The Zaitouna CSS stylesheet has been tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) by direct input. There are no errors or warnings.
+
+![CSS Validation Test](readme/css-validator.png)
+
+
+
+### PEP8 (PYTHON)
+
+[black](https://pypi.org/project/black/) package was used to format all Python code throughout the project to meet PEP8 standards.
+
+
+### JSHint (JavaScript)
+
+the Zaitouna javascript file base.js was passed into the [JSHint Javascript Validation Tool](https://jshint.com/) with no errors or warnings.
+
+![JavaScript Test](readme/js-validator.png)
+
+
+
+## Input Validation Tests
+
+All forms on the Zaitouna site have been thoroughly tested for input validation. Manual tests have also been conducted on each form field to check for any errors.
+
+
+There has been extensive manual testing completed on all features of the Zaitouna site.
+
+### Post Recipe Form Tests
+
+| Status | **Post A Recipe Form**
+|:-------:|:--------|
+| &check; | Form cannot be submitted with a blank title field 
+| &check; | Title field cannot be submitted with just whitespace
+| &check; | Form cannot be submitted without at least one category selected
+| &check; | Form cannot be submitted without cooking time being entered
+| &check; | Cooking time cannot be any character other than a number
+| &check; | Cooking time cannot be below 0
+| &check; | Form cannot be submitted without serving being entered
+| &check; | Form cannot be submitted without difficulty being entered
+| &check; | Form cannot be submitted with blank ingredients field
+| &check; | Form cannot be submitted with blank instructions field
+| &check; | Ingredients field cannot contain just whitespace
+| &check; | Form cannot be submitted without uploading an image to image field
+| &check; | Form cannot be submitted by a non-logged-in user
+
+
+
+### Edit Recipe Form Tests
+
+| Status | **Edit Recipe Form**
+|:-------:|:--------|
+| &check; | Form cannot be submitted with a blank title field 
+| &check; | Title field cannot be submitted with just whitespace
+| &check; | Form cannot be submitted without at least one category selected
+| &check; | Form cannot be submitted without cooking time being entered
+| &check; | Cooking time cannot be any character other than a number
+| &check; | Cooking time cannot be below 0
+| &check; | Form cannot be submitted without serving being entered
+| &check; | Form cannot be submitted without difficulty being entered
+| &check; | Form cannot be submitted with blank ingredients field
+| &check; | Form cannot be submitted with blank instructions field
+| &check; | Ingredients field cannot contain just whitespace
+| &check; | Form cannot be submitted without uploading an image to image field
+| &check; | Form cannot be submitted by a non-logged-in user
+
+
+### Comment Form Tests
+
+| Status | **Comment Form**
+|:-------:|:--------|
+| &check; | Form cannot be submitted with a blank body field
+| &check; | The Body field cannot be submitted with just whitespace
+| &check; | Form cannot be submitted by a non-logged-in user
+
+
+
+## Additional Tests
+
+
+| Status | **Navigation**
+|:-------:|:--------|
+| &check; | Profile is hidden from a non-authorized site user on the header navigation bars.
+| &check; | Logging in displays the logout navigation link and hides the login and sign-up menu items
+| &check; | Log out navigation menu item is not displayed to users who are not signed in
+| &check; | The Home URL link in the header sends the user to homepage
+| &check; | Recipes URL link in header sends the user to my Recipes Search page
+| &check; | New Recipe URL link in header sends the user to add recipes page
+| &check; | Login URL link in the header sends the user to the login page
+| &check; | The Logout URL link in the header sends the user to the logout page
+| &check; | Sign up URL link in the header sends the user to the signup page
+| &check; | Zaitouna logo URL link in the header sends the user to the homepage
+| &check; | Facebook social media icon in footer sends user to https://www.facebook.com and opens in a new tab
+| &check; | Instagram social media icon in footer sends user to https://www.instagram.com and opens in a new tab
+| &check; | Twitter social media icon in footer sends user to https://www.twitter.com and opens in a new tab
+| &check; | Header and footer are present on all pages of the site
+| &check; | Header and footer menus are responsive on smaller screens
+| &check; | The Header menu collapses to the mobile menu on smaller screens and the menu opens and closes with the menu button
+
+| Status | **Homepage**
+|:-------:|:--------|
+| &check; | All sections are fully responsive
+| &check; | Weekly recipe view recipe button sends the user to recipe full details
+| &check; | All view recipe buttons in the latest recipes section cards send user to full recipes
+
+
+| Status | **Recipe Details Page**
+|:-------:|:--------|
+| &check; | All sections are fully responsive
+| &check; | Bookmark/un bookmark recipe icon button is disabled for unauthorized users
+| &check; | Share Recipe icon button is disabled for unauthorized users
+| &check; | Edit Recipe icon button is disabled for authorized users
+| &check; | Delete Recipe icon button is disabled for authorized users
+| &check; | Rating Recipe (Stars) icon button is disabled for unauthorized users
+| &check; | Comments count Recipe icon button is disabled for unauthorized users
+| &check; | Authorised users can bookmark/un bookmark a recipe
+| &check; | Authorised users can Share a recipe
+| &check; | Authorised users can bookmark a recipe
+| &check; | Comment form is hidden for unauthorized users
+| &check; | Recipe comments are displayed in the comments section after admin approval
+| &check; | Page is refreshed and notification is displayed to the user upon successful comment form submission
+
+| Status | **Latest Recipes Page**
+|:-------:|:--------|
+| &check; | All sections are fully responsive
+| &check; | All view recipe buttons on recipe cards send the user to full recipes
+| &check; | Page pagination is hidden when less than nine recipes are published on the site
+| &check; | Page pagination is displayed when more than nine recipes are published on the site
+| &check; | Page pagination next button takes the user to the next page of recipes
+| &check; | Page pagination last button takes the user to the last page of recipes
+| &check; | Page pagination previous button takes the user to the previous page of recipes
+| &check; | Page pagination first button takes the user to the first page of recipes
+
+| Status | **Log In Page**
+|:-------:|:--------|
+| &check; | Form is fully responsive
+| &check; | Link to sign up page takes user to sign up page
+| &check; | Login button submits login form
+| &check; | Remember me tickbox functionality works
+| &check; | Form will not submit with a blank username field
+| &check; | Form will not submit with a blank password field
+| &check; | Log in form functionality works
+
+| Status | **Log Out Page**
+|:-------:|:--------|
+| &check; | Form is fully responsive
+| &check; | Log out button link successfully logs users out and redirects them to the homepage
+
+
+| Status | **Sign Up Page**
+|:-------:|:--------|
+| &check; | Form is fully responsive
+| &check; | Link to log in page takes user to log in page
+| &check; | Sign up button submits sign-up form
+| &check; | Form will not successfully submit with a blank username field
+| &check; | Form will not successfully submit with a blank password field
+| &check; | Form will not successfully submit with a password field value below 8 characters
+| &check; | Form will not successfully submit while the password fields don't match
+| &check; | Form will not successfully submit while the email address matches another user's email
+| &check; | Form will not successfully submit while the username matches another username
+| &check; | Sign up form functionality works and a new user is created with a successful form submission
+| &check; | Upon successful form submission the user is redirected to the homepage as an authorized user
+
+| Status | **Post Recipe Page**
+|:-------:|:--------|
+| &check; | Form is fully responsive
+| &check; | Form is not visible to non-authorized users and asks them to log in.
+| &check; | Form is displayed to authorized users
+| &check; | Form submit button submits form 
+| &check; | Can't submit the form with any blanked field
+| &check; | All fields successfully submitted and are stored in the database
+| &check; | Cloudinary image fields save the images to Cloudinary
+| &check; | On successful form submission a new recipe instance is created
+| &check; | On successful form submission the page is redirected to the All Recipes Search List.
+
+
+| Status | **Edit Recipe Page**
+|:-------:|:--------|
+| &check; | Form is fully responsive
+| &check; | Form is not visible to non-authorized users and asks them to log in.
+| &check; | Form is displayed to authorized users
+| &check; | Form submit button submits form 
+| &check; | Can't submit the form with any blanked field
+| &check; | All fields successfully submitted and are stored in the database
+| &check; | Cloudinary image fields save the images to Cloudinary
+| &check; | On successful form submission a new recipe instance is created
+| &check; | On successful form submission the page is redirected to the All Recipes Search List.
+
+| Status | **Profile Page**
+|:-------:|:--------|
+| &check; | The page is fully responsive
+| &check; | User Profile is responsive with all user information 
+
+
+| Status | **Search Recipes Page**
+|:-------:|:--------|
+| &check; | The page is fully responsive
+| &check; | User can enter a keyword to search 
+| &check; | user can pick a meal type
+| &check; | All card recipes is with the correct information for each recipe
+
+
+| Status | **404 Page**
+|:-------:|:--------|
+| &check; | The page is fully responsive
+| &check; | The 404 page is triggered and displayed when a user navigates to a site URL that doesn't exist
+| &check; | The home button link on the 404-page notification takes the user back to the homepage
+
+
