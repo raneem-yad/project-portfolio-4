@@ -64,7 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-//    rating a recipe
+    /**
+     * Enables interactive star rating functionality.
+     *
+     * This function listens for mouse events on star elements and updates their appearance
+     * based on the user's interactions (hovering, clicking). It also updates a hidden input
+     * field with the selected rating value.
+     *
+     */
     const stars = document.querySelectorAll('.star');
     const spanElement = document.querySelector('span[data-average]');
     const averageRating = spanElement.getAttribute('data-average');
@@ -103,28 +110,4 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#rating-form').submit();
         });
     });
-
-//    function rateRecipe(recipeSlug, rating) {
-//        $.ajax({
-//            type: 'POST',
-//            url: '/recipes/rate_recipe/' + recipeSlug + '/',
-//            data: {
-//                'rating': rating,
-//                // Include CSRF token from template tag
-//                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-//            },
-//            success: function(response) {
-//                if (response.success) {
-//                    // Redirect to the same page
-//                    window.location.href = window.location.href;
-//                } else {
-//                    // Handle errors if needed
-//                }
-//            },
-//            error: function(xhr, status, error) {
-//                console.error('Error:', error);
-//            }
-//        });
-//
-//    }
 });
