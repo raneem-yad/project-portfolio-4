@@ -60,7 +60,7 @@ main {
 .btn-primary {
     background-color: var(--primary-white);
     border-color: var(--primary-white);
-    color: #ffffff;
+    color: #000;
     font-family: var(--title);
     text-transform: uppercase;
 }
@@ -69,14 +69,14 @@ main {
 .btn-primary:focus {
     background-color: #72a675;
     border-color: #72a675;
-    color: #ffffff;
+    color: #000;
     font-weight: 700;
 }
 
 .btn-primary:active {
     background-color: var(--primary-white);
     border-color: var(--primary-white);
-    color: #ffffff;
+    color: #000;
 }
 
 .btn-accent {

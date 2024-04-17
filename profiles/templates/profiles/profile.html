@@ -59,13 +59,12 @@
                     <h2>Bookmarked Recipes</h2>
                 </div>
                 {% if bookmarked_recipes %}
-                <ul>
+                <ul class="list-group list-group-flush">
                        {% for recipe_name, recipe_slug in bookmarked_recipes %}
                             {% if recipe_name is none%} <p>No bookmarked recipes.</p> {%else%}
-                            <li><a href="{% url 'recipe_detail' recipe_slug %}">{{ recipe_name }}</a></li>
+                            <li class="list-group-item"><a  href="{% url 'recipe_detail' recipe_slug %}" style="color:#000;">{{ recipe_name }}</a></li>
                             {%endif%}
                         {% endfor %}
-                        <hr>
                 </ul>
                  {% else %}
                 <p>No bookmarked recipes.</p>

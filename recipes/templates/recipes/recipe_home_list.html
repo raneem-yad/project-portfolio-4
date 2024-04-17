@@ -14,7 +14,7 @@
                           <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
                       </a>
                     <div class="card-body">
-                        <h3 class="card-title">{{recipe.name}}</h3>
+                        <h2 class="card-title">{{recipe.name}}</h2>
                         <p class="card-author">
                             {% if recipe.user.profile.image.url is not none %}
                                 <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
