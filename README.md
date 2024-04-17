@@ -46,6 +46,10 @@ For Admin access with relevant sign-in information: [Zaitouna Admin](https://zai
   - [User Story](#user-story-tests)
   - [Validator Tests](#validator-tests)
   - [Input Validation](#input-validation-tests)
+  - [Automated Test](#automated-testing)
+  - [Responsive Tests](#responsive-tests)
+  - [Lighthouse Test](#lighthouse-tests)
+  - [Wave Accessibility Test](#wave-accessibility-tests)
 - [Deployment](#deployment)
   - [Connecting to GitHub](#connecting-to-github)
   - [Django Project Setup](#django-project-setup)
@@ -57,7 +61,7 @@ For Admin access with relevant sign-in information: [Zaitouna Admin](https://zai
 - [Credits](#credits)
   - [Code](#code)
   - [Media](#media)
-    - [Additional reading/tutorials/books/blogs](#additional-readingtutorialsbooksblogs)
+    - [Website Recipes](#website-recipes)
   - [Acknowledgements](#acknowledgements)
 
 
@@ -220,15 +224,15 @@ Furthermore, breaking down user stories into individual tasks enabled me to trac
 | #4 | Testing/Documentation | 15/04/24 -> 17/04/24 |
 
 
-![user-story-example](/readme/example-user-story.png)
+![user-story-example](readme/example-user-story.png)
 
 ## User Stories
 
 User stories and features recorded and managed on [GitHub Projects](<https://github.com/users/raneem-yad/projects/4>)
 
 
-![user-story](/readme/user-storied-epic-colsed.png)
-![user-story](/readme/user-stories-open.png)
+![user-story-all](readme/user-stories-all.png)
+![user-story-open](readme/uset-stories-open.png)
 
 
 ### Database Schema
@@ -247,13 +251,13 @@ The scope has been defined to prioritize essential features that align with the 
 
 Features Included:
 
-1- User Authentication: Allow users to create accounts, log in, and manage their profiles.
-2- Recipe Management: Enable users to add, edit, and delete their recipes.
-3- Recipe Browsing: Provide users with the ability to browse and search for recipes based on meal type and keywords.
-4- Recipe Interaction: Allow users to  rate, review(comment), and share recipes with others.
-5- Profile Enhancement: Allow users to personalize their profiles by uploading profile pictures and adding a bio.
-6- Home Page Features: Showcase featured recipes(weekly recipes) and provide quick access to the latest recipes.
-7- Layout and Design: Responsive website for users of mobile, tablet and desktop devices
+1. User Authentication: Allow users to create accounts, log in, and manage their profiles.
+2. Recipe Management: Enable users to add, edit, and delete their recipes.
+3. Recipe Browsing: Provide users with the ability to browse and search for recipes based on meal type and keywords.
+4. Recipe Interaction: Allow users to  rate, review(comment), and share recipes with others.
+5. Profile Enhancement: Allow users to personalize their profiles by uploading profile pictures and adding a bio.
+6. Home Page Features: Showcase featured recipes(weekly recipes) and provide quick access to the latest recipes.
+7. Layout and Design: Responsive website for users of mobile, tablet and desktop devices
 
 # Features
 
@@ -276,7 +280,6 @@ Site navigation is present at all times on every page of the site in the form of
 
 ![Header Nav Not Logged In](readme/header.png)
 
-![Mobile Nav Menu](readme/my-profile.png)
 
 ![Footer](readme/footer.png)
 
@@ -340,7 +343,7 @@ The full recipe details page is a template used to display the full information 
 
 The first section of the recipe page features the recipe image. When there is more than one image, a gallery of images is displayed underneath the main image. Basic recipe details and information is displayed in the top section, such as cooking, prep time and allergens. There is also an icon on the image which allows the user to like the recipe. In the middle section there are two columns of text displaying the recipe ingredients and method. These fields are both summernote fields so they accept fully formatted and styled user text. Each section on the recipe details page is separated by a divider to clearly illustrate the different segments. 
 
-![Recipe Details](readme/recipe-details-2.png)
+![Recipe Details](readme/details.png)
 
 
 
@@ -383,7 +386,7 @@ At the top of each recipe there is a comment icon with the count of comments on 
 
 At the bottom of each recipe details page there is a comments section for users to post comments. Logged in users can use the comment form to post a comment to that particular recipe. Comments need to be approved by an admin before they appear on the site. Comments are listed in the admin area as unapproved, and there is an action to approve comments in the admin actions menu. When comments are approved by the admin they immediately go live on the site and appear beneath the recipe. Comments are listed from the most recent at the top to the oldest at the bottom. The username of the comment author is displayed as well as the date and  profile photo and the body of the comment. 
 
-![Comment Counts](readme/comment-number.png)
+![Comment Counts](readme/comments-number.png)
 
 ![Recipe Comments](readme/comments.png)
 
@@ -437,7 +440,7 @@ The profile page on the Zaitouna Recipes website serves as a personalized hub fo
 
 A user can delete their recipe easily from the My Recipe page. If a user clicks the delete button on a recipe card the card content is hidden and a delete confirmation is displayed seeking confirmation from the user for recipe deletion. The user is also warned that the process cannot be undone. The user then has the option to cancel the delete by clicking the cancel button or to confirm recipe deletion by clicking the delete button. The delete button is purposefully coloured red for warning. If the user clicks the cancel button the card content is returned to normal. If the user clicks the delete button the recipe is deleted from the database and the page is refreshed showing the recipe removed from the list.
 
-![My Recipes Delete](readme/my-recipes-delete.png)
+![My Recipes Delete](readme/del-recipe.png)
 
 
 ### Post A Recipe
@@ -452,7 +455,7 @@ The post a recipe page template is a page which features a recipe form to enable
 
 The 404 page is triggered when a user navigates to a site URL which doesn't exist. This could be because of a number of reasons, including a faulty link or an expired URL. Most users will not see this page, but it is there as a backup for users who encounter these rare errors. The purpose of the 404 page is to notify the user that there has been an error, and the page that they have tried to access cannot be found. The Zaitouna 404 page provides a button link to the homepage for the user to easily navigate back home.
 
-![404 Page](readme/404-page.png)
+![404 Page](readme/404.png)
 
 
 ## Future Features
@@ -495,7 +498,6 @@ Offer support for multiple languages and regional cuisines to cater to a diverse
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) - Provides the styling for the site.
 * [Python](https://www.python.org/) - Provides the functionality for the site.
 * [JavaScript](https://www.javascript.com/) - Provides interactivity and front-end functionality for the site.
-* [Git](https://git-scm.com/) - Provides the version control system for the site.
 
 ## Frameworks
 
@@ -520,40 +522,22 @@ Offer support for multiple languages and regional cuisines to cater to a diverse
 * [Responsive Design Checker](https://responsivedesignchecker.com/) - An online testing tool used for responsive site testing.
 * [Am I Responsive](https://ui.dev/amiresponsive) - An online testing tool used for responsive site testing.
 * [Wave Web Accessibility Evaluation Tool](https://wave.webaim.org/) - An online suite of evaluation tools use to test the site for accessibility.
-
+* [Canva](https://canva.com/) - Creating the Logo
 
 
 ## Libraries
 
 This is a list of the Python / Django libraries used in this project.
 
-* [asgiref](https://github.com/django/asgiref) - A standard Python library to allows for asynchronous web apps and servers to communicate with each other. 
-* [binaryornot](https://pypi.org/project/binaryornot/) - An ultra-lightweight Python package to guess whether a file is binary or text.
-* [chardet](https://pypi.org/project/chardet/) - A universal encoding detector for Python3.
-* [click](https://click.palletsprojects.com/en/8.1.x/) - A Python package for creating beautiful command line interfaces in a composable way with as little code as possible.
-* [cloudinary](https://pypi.org/project/cloudinary/) - A Python package allowing integration between the application and Cloudinary. 
-* [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/) - A Python package used to create projects from project templates.
-* [dj-database-url](https://pypi.org/project/dj-database-url/) - A Django utility to utilise the DATABASE_URL environment variable to configure the Django application. Used with PostgreSQL.
-* [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/) - A Django package that facilitates integration with Cloudinary storage.
-* [Django](https://www.djangoproject.com/) - A python package for the Django framework.
-* [django-active-link](https://pypi.org/project/django-active-link/) - A Django package used to highlight an active link in the site navigation bars.
-* [django-allauth](https://django-allauth.readthedocs.io/en/latest/) - An integrated set of Django applications addressing user authentication, registration and account management.
-* [django-browser-reload](https://github.com/adamchainz/django-browser-reload) - A Django package to automatically refresh the browser during development.
-* [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) - A Django package that provides tags and filters to control the rendering behaviour of Django forms.
-* [django-summernote](https://pypi.org/project/django-summernote/) - A Django package to allow for the embedding of the summernote text editor into Django.
-* [django-tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html) - A Django package to allow for the easy integration of the Tailwind CSS utility framework with Django.
-* [gunicorn](https://gunicorn.org/) - A Python WSGI HTTP Server for UNIX.
-* [jinja2-time](https://pypi.org/project/jinja2-time/) - A Jinja2 Python extension for dates and times.
-* [oauthlib](https://github.com/oauthlib/oauthlib) - A generic, spec-compliant, thorough implementation of the OAuth request-signing logic for Python 3.6+.
-* [psycopg2](https://pypi.org/project/psycopg2/) - A PostgreSQL database adapter for Python.
-* [PyJWT](https://pyjwt.readthedocs.io/en/latest/) - A Python library that allows for encoding and decoding of JSON Web Tokens (JWT).
-* [python-slugify](https://pypi.org/project/python-slugify/) - A Python application that generates slug fields from unicode strings.
-* [python3-openid](https://pypi.org/project/python3-openid/) - A set of Python packages to support use of the OpenID decentralized identity system.
-* [pytz](https://pypi.org/project/pytz/) - A Python package for world timezone definitions, modern and historical.
-* [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) - A Python package for OAuthlib authentication support for Requests.
-* [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python.
-* [text-unidecode](https://pypi.org/project/text-unidecode/) - The most basic Text::Unidecode port for Python.
-
+- Django AllAuth 
+- Django Crispy Forms 
+- Crispy Bootstrap5 
+- Django Resized 
+- Django RichTextField 
+- Python Slugify 
+- Pillow 
+  
+Further information is available in the [requirements.txt file](requirements.txt)
 
 # Testing
 
@@ -875,6 +859,7 @@ The Zaitouna site has been tested rigorously throughout the development process.
 - [x] Ensure that clicking on a recipe card redirects the user to the full recipe details page.
 - [x] Test the profile page functionality to verify that users can view the full profile details and recipes of other users.
 
+[Back to top](<#contents>)
 
 
 ## Validator Tests
@@ -906,6 +891,8 @@ the Zaitouna javascript file base.js was passed into the [JSHint Javascript Vali
 
 ![JavaScript Test](readme/js-validator.png)
 
+
+[Back to top](<#contents>)
 
 
 ## Input Validation Tests
@@ -1095,6 +1082,9 @@ There has been extensive manual testing completed on all features of the Zaitoun
 | &check; | The 404 page is triggered and displayed when a user navigates to a site URL that doesn't exist
 | &check; | The home button link on the 404-page notification takes the user back to the homepage
 
+[Back to top](<#contents>)
+
+
 ### Automated Testing
 due to time limits, I just added some test cases to test all forms in the project and one test case to test the view function.
 
@@ -1160,7 +1150,6 @@ Zaitouna has been tested on a diverse range of different devices and screen size
 | &check; | Nexus 5
 | &check; | Nexus 6
 
-![Zaitouna Responsive Screens](readme/viva-la-nacho-responsive.png)
 
 [Back to top](<#contents>)
 
@@ -1186,17 +1175,14 @@ Zaitouna has been tested using the [Chrome Dev Tools](https://developer.chrome.c
 #### Profile Lighthouse Test
 ![Post A Recipe Lighthouse Test](readme/profile-light.png)
 
-#### My Recipes Lighthouse Test
-![My Recipes Lighthouse Test](readme/my-recipes-lighthouse.png)
-
 #### Signup Lighthouse Test
-![Sign Up Lighthouse Test](readme/sign-up-lighthouse.png)
+![Sign Up Lighthouse Test](readme/signup-light.png)
 
 #### Log In Lighthouse Test
 ![Log In Lighthouse Test](readme/login-light.png)
 
 
-[Back to top](<#contents>)
+
 
 ### Wave Accessibility Tests
 
@@ -1209,146 +1195,177 @@ Zaitouna has been manually checked for accessibility issues but has also been te
 
 
 # Deployment
+  
+## Connecting to GitHub  
 
-## Project Deployment via Heroku
+To begin this project from scratch, you must first create a new GitHub repository using the [Code Institute's Template](https://github.com/Code-Institute-Org/ci-full-template). This template provides the relevant tools to get you started. To use this template:
 
-This is a guide on how to deploy a full-stack web application via [Heroku](https://www.heroku.com).
+1. Log in to [GitHub](https://github.com/) or create a new account.
+2. Choose a new repository name and click '**Create repository**'.
+3. You can clone the repository to local IDE or start the GitPod Editor
 
-1. **Open your project in a code editor e.g [GitPod](https://www.gitpod.io/) or [VS Code](https://code.visualstudio.com/) and make sure it is connected to a GitHub repo.**
+## Django Project Setup
 
-2. **Install Django and supporting libraries** 
-* In the terminal type pip3 install 'django<4' gunicorn
-* In the terminal type pip3 install dj_database_url psycopg2
-* In the terminal type pip3 install dj3-cloudinary-storage
+1. Install Django and supporting libraries: 
+   
+- ```pip3 install 'django<4' gunicorn```
+- ```pip3 install dj_database_url psycopg2```
+- ```pip3 install dj3-cloudinary-storage```  
+  
+2. Once you have installed any relevant dependencies or libraries, such as the ones listed above, it is important to create a **requirements.txt** file and add all installed libraries to it with the ```pip3 freeze --local > requirements.txt``` command in the terminal.  
+3. Create a new Django project in the terminal ```django-admin startproject Zaitouna .```
+4. Create a new app eg. ```python3 mangage.py startapp recipes```
+5. Add this to list of **INSTALLED_APPS** in **settings.py** - 'recipes',
+6. Create a superuser for the project to allow Admin access and enter credentials: ```python3 manage.py createsuperuser```
+7. Migrate the changes with commands: ```python3 manage.py migrate```
+8. An **env.py** file must be created to store all protected data such as the **DATABASE_URL** and **SECRET_KEY**. These may be called upon in your project's **settings.py** file along with your Database configurations. The **env.py** file must be added to your **gitignore** file so that your important, protected information is not pushed to public viewing on GitHub. For adding to **env.py**:
 
-3. **Create a requirements file**
-* type pip3 freeze --local > requirements.txt
+- ```import os```
+- ```os.environ["DATABASE_URL"]="<copiedURLfromElephantSQL>"```
+- ```os.environ["SECRET_KEY"]="my_super^secret@key"```
+  
+For adding to **settings.py**:
 
-4. **Create a Django project** 
-* In the terminal type django-admin startproject 'project_name' - project_name is desired project name
+- ```import os```
+- ```import dj_database_url```
+- ```if os.path.exists("env.py"):```
+- ```import env```
+- ```SECRET_KEY = os.environ.get('SECRET_KEY')``` (actual key hidden within env.py)  
 
-5. **Create app**
-* In the terminal type python3 manage.py startapp 'app_name' - app_name is desired app name
+9. Replace **DATABASES** with:
 
-6. **Add the new app into settings.py**
-* In settings.py add the app name into the installed apps array variable and save the file
-
-7. **Migrate Changes**
-* In the terminal type python3 manage.py migrate
-* In the terminal type python3 manage.py runserver
-
-8. **Create a new external database**
-* Log into [ElephantSQL](https://www.elephantsql.com/) or create new account.
-* Click to create a new instance
-* Set up the plan by giving it a name and select the tiny turtle plan (which is free)
-* Select a region (data center) nearest to your location
-* Click review, check that the details are correct and then click to create instance
-* Return to the ElephantSQL dashboard and click on the database instance name for the project
-* Copy the ElephantSQL database URL using the copy icon. It begins with 'postgres://'
-
-9. **Create the Heroku App**
-* Log into [Heroku](https://www.heroku.com/) or create an account.
-* Click to create a new Heroku app. Give the app an app name and select Europe as the region
-* Open the app settings tab
-* Click to reveal the config vars
-* Add a config var called DATABASE_URL and paste to the ElephantSQL database URL
-
-10. **Attach the database**
-* In your code editor create a new env.py file on the top level of the project directory
-* In the env.py file add import os at the top of the file
-* Set environment variables inside the env file by adding - os.environ["DATABASE_URL"] = and then paste in the ElephantSQL database URL
-* Set secret key variable inside the env file by adding - os.environ["SECRET_KEY"] = and then add your own secret key here
-* In Heroku add the secret key variable value to the application config vars
-
-11. **Prepare the environment and settings.py file**
-* In settings.py reference and import the env.py by adding the following code to the file - 
-from pathlib import Path
-import os
-import dj_database_url
-if os.path.isfile("env.py"):
-    import env
-* Remove the hardcoded secret key and replace with links to the secret key variable in the env.py and in the heroku config vars by adding the following code - 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-* Comment out the old DATABASES object variable and add a new databases variable by adding the following code - 
+```
 DATABASES = {
-    'default':
-    dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+  }
+```
 
-12. **Save all files and make migrations**
-* In the terminal type python3 manage.py migrate
-* Save all files
+10. Set up the templates directory in **settings.py**:
+- Under ``BASE_DIR`` enter ``TEMPLATES_DIR = os.path.join(BASE_DIR, ‘templates’)``
+- Update ``TEMPLATES = 'DIRS': [TEMPLATES_DIR]`` with:
 
-13. **Get static and media files stored on Cloudinary**
-* Log in or sign up for an account on [Cloudinary](https://cloudinary.com/).
-* Copy cloundinary URL API environment variable from Cloudinary dashboard
-* Add cloudinary URL to env.py file by adding the following code - os.environ["CLOUDINARY_URL"] = and then paste in the Cloudinary URL
-* In Heroku add in the Cloudinary URL into the application config vars on the app settings. The key should be CLOUDINARY_URL and the value should be the Cloudinary URL
-* Add DISABLE_COLLECTSTATIC to Heroku config vars with a value of 1. This is a temporary step that will be removed on deployment
-* Add Cloudinary libraries into installed apps in settings.py. To do this add the following code into the INSTALLED_APPS array variable - 'cloudinary_storage', 'cloudinary'. Cloudinary storage needs to be before django.contrib.staticfiles. Cloudinary needs to be after django.contrib.staticfiles.
-* Tell Django to use Cloudinary to store media and static files by adding the following code into the settings.py file -
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = '/media/' 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-* Link file to the templates directory in Heroku. Add the following code into the settings.py file under the BASE_DIR variable - 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-* Change the templates directory to templates_dir. To do this add the following code inside the templates array variable -
-'DIRS':[TEMPLATES_DIR],
-* Add Heroku hostname to allowed_hosts by adding the following code into the allowed hosts variable - ["project_name.herokuapp.com", "localhost"] - project_name is the project name
-* Create three new folders in the top level of the project directory - media, static, and templates
+```
+os.path.join(BASE_DIR, 'templates'),
+os.path.join(BASE_DIR, 'templates', 'allauth')
+```
 
-14. **Create Procfile**
-* Create a file called Procfile on the top level of the project directory
-* Add the following code into the procfile - web: gunicorn project_name.wsgi - project_name is the project name
-* Save all files
+- Create the media, static and templates directories in top level of project file in IDE workspace.
 
-15. **Add, commit and push to repo**
-* In the terminal type the following commands to push to the GitHub repo -
-git add
-git commit -m "Deployment commit"
-git push
+11. A **Procfile** must be created within the project repo for Heroku deployment with the following placed within it: ```web: gunicorn Zaitouna.wsgi```
+12. Make the necessary migrations again.
 
-16. **Deploy the project to Heroku from the GitHub repo**
-* On the Heroku project add another config var - the key should be PORT and the value should be 8000
-* Under the project deploy tab, for the deployment method select GitHub. Search for the repository name and click connect. Once the project is connected scroll down to the manual deployment section and click deploy branch. Make sure you have the main branch selected
+## Cloudinary API 
+
+Cloudinary provides a cloud hosting solution for media storage. All users uploaded images in the FreeFid project are hosted here.
+
+Set up a new account at [Cloudinary](https://cloudinary.com/) and add your Cloudinary API environment variable to your **env.py** and Heroku Config Vars.
+In your project workspace: 
+
+- Add Cloudinary libraries to INSTALLED_APPS in settings.py 
+- In the order: 
+```
+   'cloudinary_storage',  
+   'django.contrib.staticfiles',  
+   'cloudinary',
+```
+- Add to **env.py** and link up with **settings.py**: ```os.environ["CLOUDINARY_URL"]="cloudinary://...."``` 
+- Set Cloudinary as storage for media and static files in settings.py:
+- ```STATIC_URL = '/static/'```
+```
+  STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]  
+  STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')‌  
+  MEDIA_URL = '/media/'  
+  DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+```
+
+## Elephant SQL
+
+A new database instance can be created on [Elephant SQL](https://www.elephantsql.com/) for your project. 
+
+- Choose a name and select the **Tiny Turtle** plan, which is free.
+- Select your Region and the nearest Data Center to you. 
+- From your user dashboard, retrieve the important 'postgres://....' value. Place the value within your **DATABASE_URL**  in your **env.py** file and follow the below instructions to place it in your Heroku Config Vars.
+
+
+## Heroku deployment
+
+To start the deployment process , please follow the below steps:
+
+1. Log in to [Heroku](https://id.heroku.com/login) or create an account if you are a new user.
+2. Once logged in, in the Heroku Dashboard, navigate to the '**New**' button in the top, right corner, and select '**Create New App**'.
+3. Enter an app name and choose your region. Click '**Create App**'. 
+4. In the Deploy tab, click on the '**Settings**', reach the '**Config Vars**' section and click on '**Reveal Config Vars**'. Here you will enter KEY:VALUE pairs for the app to run successfully. The KEY:VALUE pairs that you will need are your: 
+   
+   - **CLOUDINARY_URL**: **cloudinary://....** 
+   - **DATABASE_URL**:**postgres://...** 
+   - **DISABLE_COLLECTSTATIC** of value '1' (N.B Remove this Config Var before deployment),
+   -  **PORT**:**8000**
+   -  **SECRET_KEY** and value  
+  
+5. Add the Heroku host name into **ALLOWED_HOSTS** in your projects **settings.py file** -> ```['herokuappname', ‘localhost’, ‘8000 port url’].```
+6. Once you are sure that you have set up the required files including your requirements.txt and Procfile, you have ensured that **DEBUG=False**, save your project, add the files, commit for initial deployment and push the data to GitHub.
+7. Go to the '**Deploy**' tab and choose GitHub as the Deployment method.
+8. Search for the repository name, select the branch that you would like to build from, and connect it via the '**Connect**' button.
+9.  Choose from '**Automatic**' or '**Manual**' deployment options, I chose the 'Manual' deployment method. Click '**Deploy Branch**'.
+10. Once the waiting period for the app to build has finished, click the '**View**' link to bring you to your newly deployed site. If you receive any errors, Heroku will display a reason in the app build log for you to investigate. **DISABLE_COLLECTSTATIC**  may be removed from the Config Vars once you have saved and pushed an image within your project, as can **PORT:8000**.
+
+## Clone project
+
+A local clone of this repository can be made on GitHub. Please follow the below steps:
+
+1. Navigate to GitHub and log in.
+2. The [Zaitouna Repository](https://github.com/raneem-yad/project-portfolio-4) can be found at this location.
+3. Above the repository file section, locate the '**Code**' button.
+4. Click on this button and choose your clone method from HTTPS, SSH or GitHub CLI, copy the URL to your clipboard by clicking the '**Copy**' button.
+5. Open your Git Bash Terminal.
+6. Change the current working directory to the location you want the cloned directory to be made.
+7. Type `git clone` and paste in the copied URL from step 4.
+8. Press '**Enter**' for the local clone to be created.
+9. Using the ``pip3 install -r requirements.txt`` command, the dependencies and libraries needed forZaitouna will be installed.
+10. Set up your **env.py** file and from the above steps for Cloudinary and ElephantSQL, gather the Cloudinary API key and the Elephant SQL url for additon to your code.
+11. Ensure that your **env.py** file is placed in your **.gitignore** file and follow the remaining steps in the above Django Project Setup section before pushing your code to GitHub.
+
+## Fork Project
+
+A copy of the original repository can be made through GitHub. Please follow the below steps to fork this repository:  
+
+1. Navigate to GitHub and log in.  
+2. Once logged in, navigate to this repository using this link [Zaitouna Repository](https://github.com/raneem-yad/project-portfolio-4).
+3. Above the repository file section and to the top, right of the page is the '**Fork**' button, click on this to make a fork of this repository.
+4. You should now have access to a forked copy of this repository in your Github account.
+5. Follow the above Django Project Steps if you wish to work on the project.
+
 
 [Back to top](<#contents>)
 
 # Credits
 
-## Content
+## Code
 
-* Recipe content for Zaitouna was sourced from [BBC Good Food Mexican Recipes](https://www.bbcgoodfood.com/recipes/collection/mexican-recipes)
+The following blogs/tutorials complemented my learning for this project, alongside the [Code Institute's](https://codeinstitute.net/ie/) Learning Content.
 
-[Back to top](<#contents>)
+- [Django Docs](https://www.djangoproject.com/)
+- [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- [Code Institute](https://github.com/Code-Institute-Org>) 
+- [Daisy McGirr's](https://www.youtube.com/@IonaFrisbee) easy to follow Django Recipe App tutorial for understanding how to use Django's MVT framework
 
 ## Media
 
-* SVG icons for Zaitouna were obtained from [Font Awesome](https://fontawesome.com/)
-* The Zaitouna hero image was downloaded from [iStock](https://www.istockphoto.com/)
-* The accounts and featured recipe background images were downloaded from [Unsplash](https://unsplash.com/)
-* Recipe images were obtained from recipes featured on [BBC Good Food Mexican Recipes](https://www.bbcgoodfood.com/recipes/collection/mexican-recipes)
+The following sites were used to gather the photographic media used inZaitouna:
 
-[Back to top](<#contents>)
+- [Pexels](https://www.pexels.com/)
+- [Unsplash](https://unsplash.com/)
 
-## Code 
 
-* The ModifiedArrayField model class to return an array field with front-end checkboxes was sourced from [Rogulski.it](https://rogulski.it/django-multiselect-choice-admin/)
-* [Django Docs](https://docs.djangoproject.com/en/4.1/) was used as an invaluable source of information on the Django framework.
+### Website Recipes
 
-[Back to top](<#contents>)
+- All recipes were created with a help from ChatGpt
 
-# Acknowledgements
 
-The Zaitouna project was created as a portfolio project #4 for the Higher National Diploma in Full Stack Software Development at [Code Institute](https://codeinstitute.net/). This has certainly been the most challenging project so far, but I have learnt a lot from this experience and I am eternally grateful for the support I have had from my family, friends, work colleagues and fellow students. I would like to personally thank my Code Institute mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) for all his help and guidance. Also a big thank you to the Code Institute tutors who helped me sort out some tricky bugs during development. I am very excited to move on to my final portfolio project with Code Institute and continuing my learning journey as a software developer.
+## Acknowledgements
 
-Onwards and upwards!
+- Many thanks to my husband.
+- Thank you to my mentor Sandeep Aggarwal for his positive support, guidance and advice.
 
-Happy coding to all!
-
-Matthew Hobbs-Hurrell
-
-[Back to top](<#contents>)
+ [Back to top](<#contents>) 
