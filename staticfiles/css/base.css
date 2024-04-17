@@ -1,1 +1,371 @@
-/workspace/project-portfolio-4/static/css/base.css
+@import url('https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /** Fonts **/
+    --title: Montserrat, serif;
+    --main-font: Chilanka, serif;
+
+    /** Colors **/
+    --primary-background: #184B44;
+    --primary-white: #7DCE82;
+
+    /* buttons, highlights, call-to-action, or  headings */
+    --accent: #FAD02E;
+    /* hover effects, borders, or secondary buttons */
+    --deep-blue: #001F3F;
+    --rusty-orange: #C85A17;
+    --primary-text: #FFFFFF;
+    --link-hover-color: #D9B500;
+    --white: #fff;
+    --active: #ffeca4;
+
+
+    /** Utils ***/
+    --small-box-shadow: 1px 1px 7px 0 #0E3029;
+    --accent-border: 1px solid #35665D;
+
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--main-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--title);
+    color: var(--primary-background);
+}
+
+a {
+    color: var(--primary-white);
+    text-decoration: none;
+}
+
+main {
+    flex: 1 0 auto;
+    background-color: var(--white);
+}
+
+.btn-primary {
+    background-color: var(--primary-white);
+    border-color: var(--primary-white);
+    color: #ffffff;
+    font-family: var(--title);
+    text-transform: uppercase;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #72a675;
+    border-color: #72a675;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn-primary:active {
+    background-color: var(--primary-white);
+    border-color: var(--primary-white);
+    color: #ffffff;
+}
+
+.btn-accent {
+    background-color: var(--primary-background);
+    border-color: var(--primary-white);
+    color: #ffffff;
+    font-family: var(--title);
+    text-transform: uppercase;
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+    background-color: #3e716a;
+    border-color: #3e716a;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn-accent:active {
+    background-color: var(--primary-background);
+    border-color: var(--primary-white);
+    color: #ffffff;
+}
+
+
+/* Header */
+.navbar {
+    background-color: var(--primary-background);
+    box-shadow: var(--small-box-shadow);
+    color: var(--white);
+}
+
+.navbar-brand {
+    color: var(--accent);
+    font-size: xx-large;
+}
+
+a.nav-link {
+    color: var(--accent);
+    font-size: 20px;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--white);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' width='30' height='30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+img.logo {
+    width: 60px;
+    height: 60px;
+}
+
+/* Form */
+#id_password1_helptext {
+    display: none
+}
+
+.card {
+    border: var(--accent-border);
+    box-shadow: var(--small-box-shadow);
+}
+
+.card-img-top {
+
+    object-fit: cover;
+    height: 300px;
+}
+
+.form-title h1 {
+
+    display: contents;
+
+
+}
+
+.form-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-title::before,
+.form-title::after {
+    content: " ";
+    background-image: url('../images/zaitouna_icon.svg');
+    background-size: 40px 40px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    /* Adjust spacing between icon and text */
+}
+
+.form-title::before {
+    content: " ";
+    background-image: url('../images/zaitouna_icon.svg');
+    background-size: 40px 40px;
+    margin-right: 0;
+    /* Adjust spacing between icon and text */
+    margin-left: 10px;
+    /* Adjust spacing between icon and text */
+}
+
+.form-title h1 {
+    margin: 0;
+}
+
+
+.form-side {
+    background: var(--primary-background);
+    color: var(--white);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-white);
+    border-color: var(--primary-white);
+}
+
+
+/** Recipes */
+.recipe-card {
+    /**max-width: 20rem;*/
+    padding: 0;
+}
+
+.recipe-info {
+    border-bottom: 1px solid #184b4424;
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--primary-background);
+}
+
+.recipe-img {
+    width: -webkit-fill-available;
+    height: 500px;
+}
+
+.card-title {
+    color: var(--primary-background);
+}
+
+.card-author i {
+    color: var(--primary-background);
+}
+
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+/** Pagination */
+.page-link {
+    color: var(--primary-background);
+}
+
+.page-link:hover {
+    color: #7dce82;
+}
+
+.active>.page-link,
+.page-link.active {
+    background-color: #194b44ab;
+    border-color: #194b4447;
+}
+
+/** Profiles */
+.profile-img {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.profile-img img {
+    border-radius: 8px;
+    width: 100%;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info {
+    border-bottom: 1px solid #184b4424;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.info .edit i {
+    color: var(--primary-background);
+}
+
+/** Comments **/
+.comments {
+    border-top: 1px solid #184b4499;
+    padding-top: 10px;
+}
+
+.faded {
+    color: rgb(172, 175, 175);
+}
+
+.approval {
+    color: rgb(222, 146, 168);
+}
+
+.comment {
+    border-bottom: 1px solid #184b4424;
+    padding: 10px;
+}
+
+.comment-icon i {
+    color: var(--primary-background);
+}
+
+/**Tools **/
+.tools i {
+    /* color: black; */
+    color: var(--primary-background);
+}
+
+.star:hover {
+    cursor: pointer;
+}
+
+.alert {
+    --bs-alert-bg: #dfe5e5;
+}
+
+/**Modals **/
+.social-modal-body div {
+    display: inline;
+}
+
+.social-modal-body i {
+    color: var(--primary-background);
+    font-size: xx-large;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--primary-background);
+    box-shadow: var(--small-box-shadow);
+    color: var(--accent);
+    flex-shrink: 0;
+    padding: 8px 0;
+}
+
+footer img {
+    width: 200px;
+    height: auto
+}
+
+i {
+    color: var(--accent);
+}
+
+/* Media Query  */
+@media screen and (min-width: 1024px) {
+    .comments {
+        margin: 2rem;
+    }
+
+    .comments-add {
+        margin: 2rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .comments {
+        margin: 4rem;
+    }
+
+    .comments-add {
+        margin: 4rem;
+    }
+}

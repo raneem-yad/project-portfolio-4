@@ -1,4 +1,5 @@
 from django.urls import path
+from recipes import views
 
 from .views import (
     AddRecipe,
@@ -12,6 +13,9 @@ from .views import (
     comment_delete,
     rate_recipe,
 )
+
+# 404
+handler404 = views.custom_404
 
 urlpatterns = [
     path("add_recipe/", AddRecipe.as_view(), name="add_recipe"),
