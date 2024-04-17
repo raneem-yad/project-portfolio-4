@@ -32,7 +32,7 @@
 #             'image' :image,
 #             'image_alt': 'Test Recipe Image',
 #             'meal_type': meal_type_id,
- # Provide a valid preparation time in minutes
+# Provide a valid preparation time in minutes
 #             'cooking_time': 60,  # Provide a valid cooking time in minutes
 #             'serves': 4,  # P
 #         }

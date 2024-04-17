@@ -21,13 +21,11 @@ from .forms import RecipeForm, CommentForm
 # Create your views here.
 def home_recipe_view(request):
     weekly_recipe = Recipe.objects.filter(is_weekly=True).last()
-    recipe_list = Recipe.objects.annotate(
-        average_rating=Avg('ratings__rating')
-    )
+    recipe_list = Recipe.objects.annotate(average_rating=Avg("ratings__rating"))
 
     # Pagination
     paginator = Paginator(recipe_list, 6)  # Show 10 recipes per page
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     try:
         recipe_list = paginator.page(page_number)
     except PageNotAnInteger:
@@ -40,7 +38,11 @@ def home_recipe_view(request):
     return render(
         request,
         "home/index.html",
-        {"weekly_recipe": weekly_recipe, "recipe_list": recipe_list, 'star_range': range(1, 6)},
+        {
+            "weekly_recipe": weekly_recipe,
+            "recipe_list": recipe_list,
+            "star_range": range(1, 6),
+        },
     )
 
 
@@ -137,9 +139,11 @@ class RecipeDetail(FormMixin, DetailView):
         context["comment_form"] = CommentForm
 
         # Retrieve average rating for the recipe
-        rating_data = Rating.objects.filter(recipe=recipe).aggregate(Avg('rating'), Count('rating'))
-        context["average_rating"] = rating_data['rating__avg']
-        context["rating_count"] = rating_data['rating__count']
+        rating_data = Rating.objects.filter(recipe=recipe).aggregate(
+            Avg("rating"), Count("rating")
+        )
+        context["average_rating"] = rating_data["rating__avg"]
+        context["rating_count"] = rating_data["rating__count"]
         context["star_range"] = range(1, 6)
         return context
 
@@ -230,7 +234,9 @@ def bookmark_recipe(request, slug):
             # If not bookmarked, add it to the user's bookmarks
             bookmark, created = Bookmark.objects.get_or_create(user=user)
             bookmark.recipes.add(recipe)
-            messages.success(request, "Recipe was added to bookmarked list Successfully!")
+            messages.success(
+                request, "Recipe was added to bookmarked list Successfully!"
+            )
     # Redirect back to the recipe detail page
     return redirect("recipe_detail", slug=slug)
 
@@ -251,19 +257,22 @@ def remove_bookmark(request, slug):
     # Redirect back to the recipe detail page
     return redirect("recipe_detail", slug=slug)
 
+
 @login_required
 def rate_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    if request.method == 'POST':
-        rating_value = int(request.POST.get('rating'))
+    if request.method == "POST":
+        rating_value = int(request.POST.get("rating"))
         user = request.user
         try:
             rating = Rating.objects.get(user=user, recipe=recipe)
             rating.rating = rating_value
             rating.save()
         except Rating.DoesNotExist:
-            rating = Rating.objects.create(user=user, recipe=recipe, rating=rating_value)
+            rating = Rating.objects.create(
+                user=user, recipe=recipe, rating=rating_value
+            )
         # Redirect to the recipe details page after rating submission
-        return redirect('recipe_detail', slug=recipe.slug)
+        return redirect("recipe_detail", slug=recipe.slug)
     else:
-        return redirect('recipe_detail', slug=recipe.slug)
+        return redirect("recipe_detail", slug=recipe.slug)

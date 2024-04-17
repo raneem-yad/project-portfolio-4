@@ -14,18 +14,19 @@ class Profiles(TemplateView):
         user = get_object_or_404(User, pk=self.kwargs["pk"])
         profile = Profile.objects.get(user=self.kwargs["pk"])
         print(user)
-        print('==================')
+        print("==================")
         print(user.bookmarks)
-        print('==================')
-        print(user.bookmarks.values_list('recipes__name',flat=True))
-        print('==================')
-        bookmarked_recipes = user.bookmarks.values_list('recipes__name', 'recipes__slug')
-
+        print("==================")
+        print(user.bookmarks.values_list("recipes__name", flat=True))
+        print("==================")
+        bookmarked_recipes = user.bookmarks.values_list(
+            "recipes__name", "recipes__slug"
+        )
 
         context = {
-            'profile': profile,
-            'bookmarked_recipes': bookmarked_recipes,
-            'profile_form':ProfileForm(instance=profile)
+            "profile": profile,
+            "bookmarked_recipes": bookmarked_recipes,
+            "profile_form": ProfileForm(instance=profile),
         }
         return context
 

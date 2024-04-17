@@ -77,23 +77,23 @@ class Comment(models.Model):
 
 class Bookmark(models.Model):
     user = models.ForeignKey(User, related_name="bookmarks", on_delete=models.CASCADE)
-    recipes = models.ManyToManyField(
-        "recipes.Recipe"
-    )
+    recipes = models.ManyToManyField("recipes.Recipe")
 
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rater")
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ratings')
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ratings")
     rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
 
     def __str__(self):
         return f"{self.recipe} - {self.user}: {self.rating} stars"
 
     class Meta:
-        unique_together = ('recipe', 'user')  # Each user can rate a recipe only once
+        unique_together = ("recipe", "user")  # Each user can rate a recipe only once
 
     @classmethod
     def get_average_rating(cls, recipe_id):
-        average_rating = cls.objects.filter(recipe_id=recipe_id).aggregate(Avg('rating'))['rating__avg']
+        average_rating = cls.objects.filter(recipe_id=recipe_id).aggregate(
+            Avg("rating")
+        )["rating__avg"]
         return average_rating if average_rating is not None else 0

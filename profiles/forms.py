@@ -7,7 +7,4 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ["image", "bio"]
 
-        labels = {
-            "image": "Profile Image",
-            "bio": " Bio"
-        }
+        labels = {"image": "Profile Image", "bio": " Bio"}

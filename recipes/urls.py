@@ -10,7 +10,7 @@ from .views import (
     remove_bookmark,
     comment_edit,
     comment_delete,
-    rate_recipe
+    rate_recipe,
 )
 
 urlpatterns = [

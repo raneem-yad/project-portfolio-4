@@ -9,17 +9,21 @@ from django_resized import ResizedImageField
 
 # Create your models here.
 
+
 class Profile(models.Model):
     """Profile Model"""
+
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    image = ResizedImageField(size=[300, 300], quality=75, upload_to='profiles/', blank=False)
+    image = ResizedImageField(
+        size=[300, 300], quality=75, upload_to="profiles/", blank=False
+    )
     bio = RichTextField(max_length=2500, null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)
 
 
-@receiver(post_save, sender= User)
-def create_user_profile (instance, created, **kwargs):
+@receiver(post_save, sender=User)
+def create_user_profile(instance, created, **kwargs):
     if created:
-        Profile.objects.create(user = instance)
+        Profile.objects.create(user=instance)
