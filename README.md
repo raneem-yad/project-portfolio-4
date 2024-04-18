@@ -535,7 +535,8 @@ This is a list of the Python / Django libraries used in this project.
 - Django Resized 
 - Django RichTextField 
 - Python Slugify 
-- Pillow 
+- Pillow
+- black: to do PEP8 Linting.
   
 Further information is available in the [requirements.txt file](requirements.txt)
 
