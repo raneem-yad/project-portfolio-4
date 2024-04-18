@@ -12,14 +12,14 @@
                     <img src="{% static 'images/zaitouna_icon.svg' %}" class="rounded-circle avatar" style="width: 7rem;height: auto;" alt="Default Profile Photo">
                     {% endif %}
                 </div>
-                <div class="col-12 col-sm-4">
+                <div class="col-12 col-sm-3">
                     <h1>{{profile.user.username}}</h1>
                     <p><strong>Joined :</strong>{{ profile.user.date_joined|date:'d M Y'}}</p>
                 </div>
                 <div class="col-12 col-sm-2">
                     <p><strong>Added Recipes :</strong>{{ profile.user.recipe_owner.count}}</p>
                     {% if request.user == profile.user %}
-                    <p><strong>Bookmarked Recipes :</strong>{{ profile.user.bookmarks.count}}</p>
+                    <p><strong>Bookmarked Recipes :</strong>{{ bookmarked_recipes.count}}</p>
                     {% endif %}
                 </div>
                 <div class="col-12 col-sm-3">
