@@ -9,10 +9,10 @@ from .models import MealType, Recipe
 
 class RecipeFormTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='test', password='5p.WS%s8X')
-        self.client.login(username='test', password='5p.WS%s8X')
-        self.meal_type = MealType.objects.create(title='Breakfast')
-        self.url = reverse('add_recipe')
+        self.user = User.objects.create_user(username="test", password="5p.WS%s8X")
+        self.client.login(username="test", password="5p.WS%s8X")
+        self.meal_type = MealType.objects.create(title="Breakfast")
+        self.url = reverse("add_recipe")
 
     def test_valid_form(self):
         with open("./readme/add-recipe.png", "rb") as f:
@@ -33,9 +33,7 @@ class RecipeFormTestCase(TestCase):
             "difficulty": 0,
             "prep_time": 60,
             "serves": 4,
-            "status": 0,
         }
-
 
         form = RecipeForm(data=form_data, files={"image": image})
         self.assertTrue(form.is_valid())

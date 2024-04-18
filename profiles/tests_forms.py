@@ -27,4 +27,3 @@ class ProfileFormTestCase(TestCase):
         form = ProfileForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertTrue(form.errors["image"])
-

@@ -38,6 +38,8 @@ class RecipeForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """Form to comment on a recipe"""
+
     class Meta:
         model = Comment
         fields = [

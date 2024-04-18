@@ -793,10 +793,10 @@ The Zaitouna site has been tested rigorously throughout the development process.
 4. The selection of featured recipes should be dynamic and regularly updated based on popularity, user preferences, or other relevant criteria.
 
 #### Tasks:
-- [ ]Design a layout for the featured recipes section on the home page.
-- [ ]Implement functionality to retrieve a selection of featured recipes from the database.
-- [ ]Display the retrieved recipes on the home page, including images, titles, and brief descriptions.
-- [ ]Ensure that clicking on a recipe card redirects the user to the full recipe details page.
+- [x] Design a layout for the featured recipes section on the home page.
+- [x] Implement functionality to retrieve a selection of featured recipes from the database.
+- [x] Display the retrieved recipes on the home page, including images, titles, and brief descriptions.
+- [x] Ensure that clicking on a recipe card redirects the user to the full recipe details page.
 
 
 ### 16. **As a** User,**I want** to be able to view all recipes belonging to a specific Meal Type, **So that** I can explore recipes based on my preferences.
@@ -832,15 +832,15 @@ The Zaitouna site has been tested rigorously throughout the development process.
 
 
 #### Tasks:
-- [ ] Design a user interface for the profile editing page, including fields for uploading a profile picture and entering/editing a bio.
-- [ ] Implement functionality to retrieve and display the user's current profile picture on the editing page.
-- [ ] Implement file upload functionality to allow users to select and upload a profile picture from their device.
-- [ ] Validate uploaded image files to ensure they meet specified criteria (e.g., file type, size limits).
-- [ ] Implement functionality to store the uploaded profile picture in a secure location (e.g., server or cloud storage).
-- [ ] Design and implement a text field for entering/editing the user's bio.
-- [ ] Ensure that changes made to the profile information are saved and updated in the database.
-- [ ] Update the user's profile page to display the uploaded profile picture and bio.
-- [ ] Test the profile editing functionality to ensure that users can successfully upload a profile picture and add/edit their bio.
+- [x] Design a user interface for the profile editing page, including fields for uploading a profile picture and entering/editing a bio.
+- [x] Implement functionality to retrieve and display the user's current profile picture on the editing page.
+- [x] Implement file upload functionality to allow users to select and upload a profile picture from their device.
+- [x] Validate uploaded image files to ensure they meet specified criteria (e.g., file type, size limits).
+- [x] Implement functionality to store the uploaded profile picture in a secure location (e.g., server or cloud storage).
+- [x] Design and implement a text field for entering/editing the user's bio.
+- [x] Ensure that changes made to the profile information are saved and updated in the database.
+- [x] Update the user's profile page to display the uploaded profile picture and bio.
+- [x] Test the profile editing functionality to ensure that users can successfully upload a profile picture and add/edit their bio.
 
 ### 18. **As a** User, **I want**  to be able to view the full profile of another user by clicking on their profile picture, **So that** I can see the recipes they have added without accessing their bookmarked recipes.
 
@@ -949,6 +949,12 @@ There has been extensive manual testing completed on all features of the Zaitoun
 | &check; | The Body field cannot be submitted with just whitespace
 | &check; | Form cannot be submitted by a non-logged-in user
 
+### Profile Form Tests
+
+| Status | **Comment Form**
+|:-------:|:--------|
+| &check; | Form cannot be submitted with a blank image field
+| &check; | Form cannot be submitted by a non-logged-in user
 
 
 ## Additional Tests
@@ -1086,7 +1092,9 @@ There has been extensive manual testing completed on all features of the Zaitoun
 
 
 ### Automated Testing
-due to time limits, I just added some test cases to test all forms in the project and one test case to test the view function.
+due to time limits, I just added some test cases to test all forms in the project.
+
+![Form Tests](readme/auto-test.png)
 
 #### Running Tests
 To run automated tests for the project, you can use Django's built-in testing framework. From the project's root directory, execute the following command:

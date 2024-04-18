@@ -20,13 +20,26 @@ from .forms import RecipeForm, CommentForm
 # Show 10 recipes per page
 MAX_RECORDS = 6
 
-# Create your views here.
+
 def home_recipe_view(request):
+    """
+    View for rendering the home page with a list of recipes and a weekly featured recipe.
+
+    This view retrieves the weekly featured recipe and a list of all recipes with their
+    average ratings. It paginates the recipe list and renders the home page template with
+    the necessary data.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response with the rendered home page template.
+    """
     weekly_recipe = Recipe.objects.filter(is_weekly=True).last()
     recipe_list = Recipe.objects.annotate(average_rating=Avg("ratings__rating"))
 
     # Pagination
-    paginator = Paginator(recipe_list, MAX_RECORDS)  
+    paginator = Paginator(recipe_list, MAX_RECORDS)
     page_number = request.GET.get("page")
     try:
         recipe_list = paginator.page(page_number)
@@ -166,6 +179,20 @@ class RecipeDetail(FormMixin, DetailView):
 
 
 class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    View for deleting a recipe.
+
+    This view allows authenticated users to delete their own recipes. Only the user who owns
+    the recipe can delete it.
+
+    Attributes:
+        model (Model): The model class representing the recipe.
+        success_url (str): The URL to redirect to after successfully deleting the recipe.
+
+    Methods:
+        test_func(): Check if the user is allowed to delete the recipe.
+    """
+
     model = Recipe
     success_url = "/recipes/"
 
@@ -174,6 +201,22 @@ class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    View for editing a recipe.
+
+    This view allows authenticated users to edit their own recipes. Only the user who owns
+    the recipe can edit it.
+
+    Attributes:
+        template_name (str): The template to render for editing the recipe.
+        model (Model): The model class representing the recipe.
+        form_class (Form): The form class to use for editing the recipe.
+        success_url (str): The URL to redirect to after successfully editing the recipe.
+
+    Methods:
+        test_func(): Check if the user is allowed to edit the recipe.
+    """
+
     template_name = "recipes/edit_recipe.html"
     model = Recipe
     form_class = RecipeForm
@@ -183,6 +226,7 @@ class EditRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == self.get_object().user
 
 
+@login_required()
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
@@ -208,6 +252,7 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse("recipe_detail", args=[slug]))
 
 
+@login_required()
 def comment_delete(request, slug, comment_id):
     """
     view to delete comment
@@ -228,6 +273,19 @@ def comment_delete(request, slug, comment_id):
 
 @login_required
 def bookmark_recipe(request, slug):
+    """
+    View for bookmarking a recipe.
+
+    This view allows authenticated users to bookmark a recipe. If the recipe is not already
+    bookmarked by the user, it adds the recipe to the user's bookmarks.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the recipe to be bookmarked.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the recipe detail page after bookmarking the recipe.
+    """
     if request.method == "GET":
         user = request.user
         recipe = Recipe.objects.get(slug=slug)
@@ -245,6 +303,18 @@ def bookmark_recipe(request, slug):
 
 @login_required
 def remove_bookmark(request, slug):
+    """
+    View for removing a bookmark from a recipe.
+
+    This view allows authenticated users to remove a recipe from their bookmarks.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the recipe to be removed from bookmarks.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the recipe detail page after removing the bookmark.
+    """
     if request.method == "GET":
         user = request.user
         recipe = Recipe.objects.get(slug=slug)
@@ -262,6 +332,19 @@ def remove_bookmark(request, slug):
 
 @login_required
 def rate_recipe(request, recipe_id):
+    """
+    View for rating a recipe.
+
+    This view allows authenticated users to rate a recipe. It retrieves the rating value
+    from the request and updates the rating for the specified recipe.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        recipe_id (int): The ID of the recipe to be rated.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the recipe detail page after rating the recipe.
+    """
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == "POST":
         rating_value = int(request.POST.get("rating"))
@@ -279,6 +362,19 @@ def rate_recipe(request, recipe_id):
     else:
         return redirect("recipe_detail", slug=recipe.slug)
 
+
 # 404 View
 def custom_404(request, exception):
+    """
+    View for handling 404 errors.
+
+    This view renders a custom 404 page for handling page not found errors.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        exception: The exception object representing the 404 error.
+
+    Returns:
+        HttpResponse: The HTTP response with the custom 404 page.
+    """
     return render(request, "404.html")

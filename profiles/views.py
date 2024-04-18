@@ -8,17 +8,25 @@ from .models import Profile
 
 # Create your views here.
 class Profiles(TemplateView):
+    """
+    View for displaying user profiles.
+
+    This view retrieves the user profile information based on the provided user ID (pk)
+    and renders the profile template with the profile data and a list of bookmarked recipes.
+
+    Attributes:
+        template_name (str): The template to render the user profile.
+
+    Methods:
+        get_context_data(**kwargs): Retrieve the user profile and associated bookmarked recipes
+            to pass to the template context.
+    """
+
     template_name = "profiles/profile.html"
 
     def get_context_data(self, **kwargs):
         user = get_object_or_404(User, pk=self.kwargs["pk"])
         profile = Profile.objects.get(user=self.kwargs["pk"])
-        print(user)
-        print("==================")
-        print(user.bookmarks)
-        print("==================")
-        print(user.bookmarks.values_list("recipes__name", flat=True))
-        print("==================")
         bookmarked_recipes = user.bookmarks.values_list(
             "recipes__name", "recipes__slug"
         )
@@ -32,6 +40,17 @@ class Profiles(TemplateView):
 
 
 class EditProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    View for editing user profiles.
+
+    This view allows authenticated users to edit their own profiles. Only the user who owns
+    the profile can edit it.
+
+    Attributes:
+        form_class (Form): The form class to use for editing the profile.
+        model (Model): The model class representing the profile.
+    """
+
     form_class = ProfileForm
     model = Profile
 
