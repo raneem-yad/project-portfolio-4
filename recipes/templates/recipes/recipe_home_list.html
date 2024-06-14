@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h2 class="card-title">{{recipe.name}}</h2>
                         <p class="card-author">
-                            {% if recipe.user.profile.image.url is not none %}
+                            {% if recipe.user.profile.image %}
                                 <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
                                 <img src="{{ recipe.user.profile.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
                                 </a>

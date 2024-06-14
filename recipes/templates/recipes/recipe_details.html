@@ -29,7 +29,7 @@
   <!-- Info Section -->
   <div class="d-flex flex-wrap recipe-info">
       <div class="my-2 mx-4">
-        {% if recipe.user.profile.image.url %}
+        {% if recipe.user.profile.image %}
           <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
             <img src="{{ recipe.user.profile.image.url }}" class="rounded-circle avatar" alt="{{ recipe.user.username }} Profile Photo">
           </a>
