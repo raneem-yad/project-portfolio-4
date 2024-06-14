@@ -149,9 +149,12 @@ class RecipeDetail(FormMixin, DetailView):
             context["is_bookmarked"] = False
 
         # Retrieve comments for the recipe
-        context["comments"] = recipe.comments.order_by("-created_on")
-        context["comment_count"] = context["comments"].count()
+        comments = recipe.comments.order_by("-created_on")
+        context["comments"] = comments
+        context["comment_count"] = comments.filter(approved=True).count()
         context["comment_form"] = CommentForm
+
+
 
         # Retrieve average rating for the recipe
         rating_data = Rating.objects.filter(recipe=recipe).aggregate(
