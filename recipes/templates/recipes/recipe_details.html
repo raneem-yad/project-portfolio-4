@@ -127,8 +127,12 @@
         <!-- Media object -->
             <div class=" d-flex comment {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %} d-none{% endif %}">
               <!-- Image -->
-              <a href="{% url 'profile' recipe.user.profile.id %}" aria-label="Click to view user profile {{recipe.user.username}}">
-                <img src="{{comment.author.profile.image.url}}"alt="{{comment.author}}"class="me-3 rounded-circle"style="width: 60px; height: 60px;"/>
+              <a href="{% url 'profile' comment.author.profile.id %}" aria-label="Click to view user profile {{comment.author.username}}">
+                    {% if comment.author.profile.image %}
+                        <img src="{{ comment.author.profile.image.url }}" class="me-3 rounded-circle" style="width: 60px; height: 60px;" alt="{{ comment.author.username }} Profile Photo">
+                    {% else %}
+                        <img src="{% static 'images/zaitouna_icon.svg' %}" class="me-3 rounded-circle" style="width: 60px; height: 60px;" alt="Default Profile Photo">
+                    {% endif %}
               </a>
               <!-- Media body -->
               <div class="media-body">
