@@ -1202,6 +1202,14 @@ Zaitouna has been manually checked for accessibility issues but has also been te
 [Back to top](<#contents>)
 
 
+## Unresolved Bugs 
+`Uncaught TypeError: Cannot read properties of undefined (reading 'backdrop')
+    at Ue._initializeBackDrop (modal.js:160:39)
+    at new Ue (modal.js:71:27)
+    at base.js:10:21`
+
+it's a bug that appears in the console because of modal.js from the Bootstrap framework.
+
 
 # Deployment
   
